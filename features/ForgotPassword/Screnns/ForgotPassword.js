@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import React from "react";
-import GoogleLogo from "../Assests/GoogleLogo";
-import ForgotPassword from "../../ForgotPassword/Screnns/ForgotPassword";
 
-const Welcom2 = ({ navigation }) => {
+const ForgotPassword = ({ navigation }) => {
   return (
     <View
       style={{
@@ -17,6 +15,9 @@ const Welcom2 = ({ navigation }) => {
         <Text style={{ paddingVertical: 12, fontWeight: "bold" }}>
           What’s your email or phone number
         </Text>
+        <Text style={{ marginBottom: 14 }}>
+          A password recovery mail will be sent into your email address
+        </Text>
       </View>
 
       <View>
@@ -29,12 +30,12 @@ const Welcom2 = ({ navigation }) => {
           }}
         >
           <Text style={{ fontWeight: "300", fontSize: 12, paddingLeft: 8 }}>
-          +234 903 000 2629
+            Enter your email
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("WelcomBack")}
+          onPress={() => navigation.navigate("VerifyPassword")}
           style={{
             padding: 12,
 
@@ -51,27 +52,9 @@ const Welcom2 = ({ navigation }) => {
               fontWeight: "bold",
             }}
           >
-            Continue
+            Reset password
           </Text>
         </TouchableOpacity>
-      </View>
-      <View
-        style={{ height: 1, backgroundColor: "black", marginTop: 20 }}
-      ></View>
-      <View style={{ flexDirection: "row", alignSelf: "center" }}>
-        <GoogleLogo height={100} style={{}} />
-        <Text style={{ alignSelf: "center", paddingLeft: 10, fontSize: 20 }}>
-          Continue with Google
-        </Text>
-      </View>
-      <TouchableOpacity style={{ marginBottom: 20 }} onPress={()=>navigation.navigate(ForgotPassword)}>
-        <Text style={{ alignSelf: "center" }}>Forgot password</Text>
-      </TouchableOpacity>
-      <View>
-        <Text>
-          By proceeding, you consent to get calls, whatsapp or sms messages and
-          agree to the terms of services & privacy policy of Paakej.
-        </Text>
       </View>
       <TouchableOpacity
         style={{
@@ -89,6 +72,6 @@ const Welcom2 = ({ navigation }) => {
   );
 };
 
-export default Welcom2;
+export default ForgotPassword;
 
 const styles = StyleSheet.create({});

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import React from "react";
 import GoogleLogo from "../Assests/GoogleLogo";
+import ForgotPassword from "../../ForgotPassword/Screnns/ForgotPassword";
 
 const Welcom1 = ({ navigation }) => {
   return (
@@ -54,7 +55,7 @@ const Welcom1 = ({ navigation }) => {
         <GoogleLogo height={100} style={{}}/>
         <Text style={{alignSelf :'center' , paddingLeft : 10 , fontSize : 20}}>Continue with Google</Text>
       </View>
-      <TouchableOpacity style={{marginBottom : 20}}>
+      <TouchableOpacity style={{marginBottom : 20}} onPress={()=>navigation.navigate(ForgotPassword)}>
         <Text style={{alignSelf : 'center'}}>Forgot password</Text>
       </TouchableOpacity>
       <View>
