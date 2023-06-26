@@ -9,6 +9,10 @@ import ForgotPassword from "./features/ForgotPassword/Screnns/ForgotPassword";
 import VerifyPassword from "./features/ForgotPassword/Screnns/VerifyPassword";
 import CreatePassword from "./features/ForgotPassword/Screnns/CreatePassword";
 import PasswordChanges from "./features/ForgotPassword/Screnns/PasswordChanges";
+import RegisterName from "./features/Register/Screens/RegisterName";
+import RegisterPassword from "./features/Register/Screens/RegisterPassword";
+import VerifyEmail from "./features/Register/Screens/VerifyEmail";
+import WelcomPool from "./features/Register/Screens/WelcomPool";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -48,6 +52,26 @@ const App = () => {
         <Stack.Screen
           name="PasswordChanges"
           component={PasswordChanges}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RegisterName"
+          component={RegisterName}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RegisterPassword"
+          component={RegisterPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerifyEmail"
+          component={VerifyEmail}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WelcomPool"
+          component={WelcomPool}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -51,10 +51,12 @@ const Welcom1 = ({ navigation }) => {
       <View style={{height : 1 , backgroundColor : 'black' , marginTop : 20}}>
 
       </View>
-      <View style={{ flexDirection : 'row'  , alignSelf :'center'}}>
+      <TouchableOpacity 
+      onPress={()=>navigation.navigate('RegisterName')}
+      style={{ flexDirection : 'row'  , alignSelf :'center'}}>
         <GoogleLogo height={100} style={{}}/>
         <Text style={{alignSelf :'center' , paddingLeft : 10 , fontSize : 20}}>Continue with Google</Text>
-      </View>
+      </TouchableOpacity>
       <TouchableOpacity style={{marginBottom : 20}} onPress={()=>navigation.navigate(ForgotPassword)}>
         <Text style={{alignSelf : 'center'}}>Forgot password</Text>
       </TouchableOpacity>

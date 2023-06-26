@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import React from 'react'
-import CodeInput from "../Components/CodeInput";
-import CodeInputCmp from "../Components/CodeInput";
+import CodeInputCmp from "../../ForgotPassword/Components/CodeInput";
 
-const VerifyPassword = ({navigation}) => {
+
+const VerifyEmail = ({navigation}) => {
   return (
     <View
     style={{
@@ -28,42 +28,35 @@ const VerifyPassword = ({navigation}) => {
       <CodeInputCmp />
     </View>
       
+      <View style={{alignSelf : 'center'}}>
+      <Text style={{fontWeight : 'bold' , fontSize : 18}}>120 s</Text>
+      </View>
 
+     
+    </View>
+    <View style={{flexDirection : "row" , justifyContent : 'space-between' , position :'absolute' , bottom : 10 , width :'100%'  , left : 15}}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("CreatePassword")}
         style={{
-          padding: 12,
-
-          backgroundColor: "#053582",
+          backgroundColor: "#EBEBEB",
+          
           borderRadius: 30,
+          width: 100,
         }}
       >
-        <Text
-          style={{
-            fontWeight: "300",
-            fontSize: 14,
-            alignSelf: "center",
-            color: "white",
-            fontWeight: "bold",
-          }}
-          
-        >
-          Continue
-        </Text>
+        <Text style={{ padding: 10, alignSelf: "center" }}>Back</Text>
       </TouchableOpacity>
-    </View>
-    <TouchableOpacity
-      style={{
-        backgroundColor: "#EBEBEB",
-        position: "absolute",
-        bottom: 5,
-        borderRadius: 30,
-        width: 100,
-      }}
-      onPress={()=>navigation.navigate('ForgotPassword')}
-    >
-      <Text style={{ padding: 10, alignSelf: "center" }}>Back</Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>navigation.navigate('WelcomPool')}
+        style={{
+          backgroundColor: "#053582",
+          
+          borderRadius: 30,
+          width: 100,
+        }}
+      >
+        <Text style={{ padding: 10, alignSelf: "center" , color :'white' }}>Continue</Text>
+      </TouchableOpacity>
+      </View>
     <View style={{flexDirection : "row" , justifyContent:"center"  , paddingTop : 20}}>
         <Text>Didn’t receive any code?</Text>
         <Text style={{color : 'blue'}}>  Resend</Text>
@@ -72,6 +65,6 @@ const VerifyPassword = ({navigation}) => {
   )
 }
 
-export default VerifyPassword
+export default VerifyEmail
 
 const styles = StyleSheet.create({})
