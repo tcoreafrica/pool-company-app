@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View   , Image , TouchableOpacity} from 'react-native'
 import React from 'react'
 
-const WelcomPool = () => {
+const WelcomPool = ({navigation}) => {
   return (
     <View style={{  alignItems : 'center', backgroundColor :'white' , width : '100%' , height : '100%' , justifyContent :'center'}}>
       <Image source={require('../../ForgotPassword/Assets/capture.png')}/>
@@ -16,6 +16,7 @@ const WelcomPool = () => {
           borderRadius: 30,
           width: 100,
         }}
+        onPress={()=>navigation.navigate('Dashbord')}
       >
         <Text style={{ padding: 10, alignSelf: "center" , color :'white' }}>Continue</Text>
       </TouchableOpacity>
