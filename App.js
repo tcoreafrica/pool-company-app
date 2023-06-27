@@ -1,80 +1,112 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Welcom1 from "./features/Login/Screens/Welcom1";
-import Welcom2 from "./features/Login/Screens/Welcom2";
-import WelcomBack from "./features/Login/Screens/WelcomBack";
-import ForgotPassword from "./features/ForgotPassword/Screnns/ForgotPassword";
-import VerifyPassword from "./features/ForgotPassword/Screnns/VerifyPassword";
-import CreatePassword from "./features/ForgotPassword/Screnns/CreatePassword";
-import PasswordChanges from "./features/ForgotPassword/Screnns/PasswordChanges";
-import RegisterName from "./features/Register/Screens/RegisterName";
-import RegisterPassword from "./features/Register/Screens/RegisterPassword";
+import StackCmp from "./features/Navigation/Stacks/Stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomNavigation } from "react-native-paper";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Dashbord from "./features/ExchangePool/Screnns/Dashbord";
 import VerifyEmail from "./features/Register/Screens/VerifyEmail";
-import WelcomPool from "./features/Register/Screens/WelcomPool";
 
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
+  function BottomTabNavigator() {
+    return (
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        tabBar={({ navigation, state, descriptors, insets }) => (
+          <BottomNavigation.Bar
+            navigationState={state}
+            safeAreaInsets={insets}
+            onTabPress={({ route, preventDefault }) => {
+              const event = navigation.emit({
+                type: "tabPress",
+                target: route.key,
+                canPreventDefault: true,
+              });
+
+              if (event.defaultPrevented) {
+                preventDefault();
+              } else {
+                navigation.dispatch({
+                  ...CommonActions.navigate(route.name, route.params),
+                  target: state.key,
+                });
+              }
+            }}
+            renderIcon={({ route, focused, color }) => {
+              const { options } = descriptors[route.key];
+              if (options.tabBarIcon) {
+                return options.tabBarIcon({ focused, color, size: 24 });
+              }
+
+              return null;
+            }}
+            getLabelText={({ route }) => {
+              const { options } = descriptors[route.key];
+              const label =
+                options.tabBarLabel !== undefined
+                  ? options.tabBarLabel
+                  : options.title !== undefined
+                  ? options.title
+                  : route.title;
+
+              return label;
+            }}
+          />
+        )}
+      >
+        <Tab.Screen
+          name="Dashbord"
+          component={StackCmp}
+          options={{
+            tabBarLabel: "Dash",
+            tabBarIcon: ({ color, size }) => {
+              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="WelcomPool"
+          component={StackCmp}
+          options={{
+            tabBarLabel: "Orders",
+            tabBarIcon: ({ color, size }) => {
+              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="RegisterPassword"
+          component={StackCmp}
+          options={{
+            tabBarLabel: "Riders",
+            tabBarIcon: ({ color, size }) => {
+              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+            },
+          }}
+        />
+        
+        <Tab.Screen
+          name="VerifyEmail"
+          component={StackCmp}
+          options={{
+            tabBarLabel: "Track",
+            tabBarIcon: ({ color, size }) => {
+              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+            },
+          }}
+        />
+      </Tab.Navigator>
+    );
+  }
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Welcom1"
-          component={Welcom1}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Welcom2"
-          component={Welcom2}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="WelcomBack"
-          component={WelcomBack}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="VerifyPassword"
-          component={VerifyPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="CreatePassword"
-          component={CreatePassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="PasswordChanges"
-          component={PasswordChanges}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterName"
-          component={RegisterName}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterPassword"
-          component={RegisterPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="VerifyEmail"
-          component={VerifyEmail}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="WelcomPool"
-          component={WelcomPool}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {/* <StackCmp /> */}
+      <BottomTabNavigator />
     </NavigationContainer>
   );
 };
