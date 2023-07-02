@@ -13,11 +13,12 @@ import VerifyEmail from "../../Register/Screens/VerifyEmail";
 import WelcomPool from "../../Register/Screens/WelcomPool";
 import Dashbord from "../../ExchangePool/Screnns/Dashbord";
 import RegisterName from "../../Register/Screens/RegisterName";
+import Onboording from "../../Onboording/screens/Onboording";
 
 const StackCmp = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Onboording">
       <Stack.Screen
         name="Welcom1"
         component={Welcom1}
@@ -77,6 +78,13 @@ const StackCmp = () => {
         name="Dashbord"
         component={Dashbord}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+      name="Onboording"
+      component={Onboording}
+      options={{
+        headerShown: false
+      }}
       />
     </Stack.Navigator>
   );

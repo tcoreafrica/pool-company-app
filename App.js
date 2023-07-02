@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StackCmp from "./features/Navigation/Stacks/Stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomNavigation } from "react-native-paper";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Dashbord from "./features/ExchangePool/Screnns/Dashbord";
 import VerifyEmail from "./features/Register/Screens/VerifyEmail";
 
@@ -65,7 +65,13 @@ const App = () => {
           options={{
             tabBarLabel: "Dash",
             tabBarIcon: ({ color, size }) => {
-              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+              return (
+                <MaterialCommunityIcons
+                  name="face-man-profile"
+                  size={24}
+                  color="black"
+                />
+              );
             },
           }}
         />
@@ -75,7 +81,13 @@ const App = () => {
           options={{
             tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => {
-              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+              return (
+                <MaterialCommunityIcons
+                  name="face-man-profile"
+                  size={24}
+                  color="black"
+                />
+              );
             },
           }}
         />
@@ -85,18 +97,30 @@ const App = () => {
           options={{
             tabBarLabel: "Riders",
             tabBarIcon: ({ color, size }) => {
-              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+              return (
+                <MaterialCommunityIcons
+                  name="face-man-profile"
+                  size={24}
+                  color="black"
+                />
+              );
             },
           }}
         />
-        
+
         <Tab.Screen
           name="VerifyEmail"
           component={StackCmp}
           options={{
             tabBarLabel: "Track",
             tabBarIcon: ({ color, size }) => {
-              return <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />;
+              return (
+                <MaterialCommunityIcons
+                  name="face-man-profile"
+                  size={24}
+                  color="black"
+                />
+              );
             },
           }}
         />
@@ -105,8 +129,8 @@ const App = () => {
   }
   return (
     <NavigationContainer>
-      {/* <StackCmp /> */}
-      <BottomTabNavigator />
+      <StackCmp />
+      {/* <BottomTabNavigator /> */}
     </NavigationContainer>
   );
 };

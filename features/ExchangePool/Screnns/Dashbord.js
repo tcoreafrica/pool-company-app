@@ -3,7 +3,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Dashbord = () => {
+const Dashbord = ({navigation}) => {
   return (
     <View style={{ marginHorizontal: 20, marginTop: 60 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -111,6 +111,11 @@ const Dashbord = () => {
         />
         <Text style={{paddingLeft :10}}>Orders you can’t meet with? Push them to the order pool now</Text>
       </View>
+      {/* <TouchableOpacity 
+      onPress={()=>navigation.navigate('Onboording')}
+      syle={{backgroundColor :'red'}}>
+        <Text>test</Text>
+      </TouchableOpacity> */}
     </View>
   );
 };
