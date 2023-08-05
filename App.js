@@ -12,11 +12,30 @@ import Dashbord from "./features/ExchangePool/Screnns/Dashbord";
 import Stack2 from "./features/Navigation/Stacks/Stack2";
 import StackCmp2 from "./features/Navigation/Stacks/Stack2";
 import Orders from "./features/ExchangePool/Screnns/Orders";
-import { CommonActions } from '@react-navigation/native';
+import { CommonActions } from "@react-navigation/native";
 import Riders from "./features/Riders/Screens/Riders";
 import Track from "./features/Track/Screens/Track";
-
-
+import DelivryLogo from "./constants/DelivryLogo";
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Scheduellogo from "./constants/Scheduellogo";
+import Payementlogo from "./constants/Payement";
+import SavedCardLogo from "./constants/SavedCardLogo";
+import ProfileLogo from "./constants/ProfileLogo";
+import ShareLogo from "./constants/ShareLogo";
+import SupportLogo from "./constants/Support";
+import { View, Text } from "react-native";
+import AvatarLogo from "./constants/Avatar";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import DrawerLogo from "./constants/DrawerLogo";
+import DashLogo from "./constants/DashLogo";
+import OrdersLogo from "./constants/OrdersLogo";
+import RidersLogo from "./constants/RidersLogo";
+import TrackLogo from "./constants/TrackLogo";
 
 const App = () => {
   const Tab = createBottomTabNavigator();
@@ -25,7 +44,7 @@ const App = () => {
     drawerStyle: {
       // Customize the drawer styles
       backgroundColor: "#f1f1f1",
-      width: 200,
+      width: 300,
     },
     drawerContentOptions: {
       // Customize the drawer content options
@@ -34,7 +53,7 @@ const App = () => {
       labelStyle: {
         fontSize: 16,
         fontWeight: "bold",
-      },
+      }
     },
   };
   function BottomTabNavigator() {
@@ -92,11 +111,7 @@ const App = () => {
             tabBarLabel: "Dash",
             tabBarIcon: ({ color, size }) => {
               return (
-                <MaterialCommunityIcons
-                  name="face-man-profile"
-                  size={24}
-                  color="black"
-                />
+                <DashLogo />
               );
             },
           }}
@@ -108,11 +123,7 @@ const App = () => {
             tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => {
               return (
-                <MaterialCommunityIcons
-                  name="face-man-profile"
-                  size={24}
-                  color="black"
-                />
+                <OrdersLogo />
               );
             },
           }}
@@ -124,11 +135,7 @@ const App = () => {
             tabBarLabel: "Riders",
             tabBarIcon: ({ color, size }) => {
               return (
-                <MaterialCommunityIcons
-                  name="face-man-profile"
-                  size={24}
-                  color="black"
-                />
+                <RidersLogo />
               );
             },
           }}
@@ -141,11 +148,7 @@ const App = () => {
             tabBarLabel: "Track",
             tabBarIcon: ({ color, size }) => {
               return (
-                <MaterialCommunityIcons
-                  name="face-man-profile"
-                  size={24}
-                  color="black"
-                />
+                <TrackLogo />
               );
             },
           }}
@@ -153,48 +156,126 @@ const App = () => {
       </Tab.Navigator>
     );
   }
+  const CustomDrawerContent = (props) => {
+    const { navigation } = props;
+    return (
+      <DrawerContentScrollView {...props}>
+        <View style={{ position: "absolute", right: 10, top: 44 }}>
+        <TouchableOpacity onPress={() => navigation.closeDrawer()} >
+          <DrawerLogo />
+        </TouchableOpacity>
+        </View>
+        
+        <View style={{ height: 200, paddingTop: 55 }}>
+          <View style={{ position: "absolute", right: 10, top: 50 }}>
+            <Text style={{}}>Wallet:</Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingTop: 20,
+              paddingHorizontal: 10,
+            }}
+          >
+            <AvatarLogo />
+            <Text style={{ color: "#053582", fontWeight: "800", fontSize: 20 }}>
+              N4330.50
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text>Touchcore Deliveries</Text>
+            <View
+              style={{
+                borderRadius: 8,
+                height: 25,
+                width: 75,
+                borderWidth: 2,
+                borderColor: "#053582",
+                backgroundColor: "white",
+              }}
+            >
+              <Text style={{ alignSelf: "center" }}>Top Up</Text>
+            </View>
+          </View>
+          <TouchableOpacity
+            style={{
+              height: 45,
+              backgroundColor: "#053582",
+              marginTop: 10,
+              marginHorizontal: 10,
+              borderRadius: 5,
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                alignSelf: "center",
+                paddingVertical: 10,
+              }}
+            >
+              Upgrade your account now
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <DrawerItemList {...props} />
+        <DrawerItem
+          label="Schedule delivery"
+          icon={({ focused, color, size }) => <Scheduellogo />}
+          // onPress={() => props.navigation.navigate('Home')}
+        />
+        <DrawerItem
+          label="Delivery History"
+          icon={({ focused, color, size }) => <DelivryLogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        <DrawerItem
+          label="Payments"
+          icon={({ focused, color, size }) => <Payementlogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        <DrawerItem
+          label="Saved Cards"
+          icon={({ focused, color, size }) => <SavedCardLogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        <DrawerItem
+          label="Profile summary"
+          icon={({ focused, color, size }) => <ProfileLogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        <DrawerItem
+          label="Support"
+          icon={({ focused, color, size }) => <SupportLogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        <DrawerItem
+          label="Share App"
+          icon={({ focused, color, size }) => <ShareLogo />}
+          // onPress={() => props.navigation.navigate('Profile')}
+        />
+        {/* Add more screens with icons as needed */}
+      </DrawerContentScrollView>
+    );
+  };
+
   return (
     <NavigationContainer>
-      
       {/* <StackCmp /> */}
       {/* <BottomTabNavigator />   */}
-      <Drawer.Navigator screenOptions={DrawerScreenOptions} initialRouteName="Onboording">
+      <Drawer.Navigator
+        screenOptions={DrawerScreenOptions}
+        initialRouteName="Onboording"
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
         <Drawer.Screen name="Dashboard" component={BottomTabNavigator} />
-        <Drawer.Screen
-          name="Schedule delivery"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Delivery History"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Payments"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Saved Cards"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Profile summary"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Support"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
-        <Drawer.Screen
-          name="Share App"
-          component={StackCmp}
-          options={{ headerShown: false }}
-        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
