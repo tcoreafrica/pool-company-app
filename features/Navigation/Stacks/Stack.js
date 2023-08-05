@@ -14,6 +14,7 @@ import WelcomPool from "../../Register/Screens/WelcomPool";
 import Dashbord from "../../ExchangePool/Screnns/Dashbord";
 import RegisterName from "../../Register/Screens/RegisterName";
 import Onboording from "../../Onboording/screens/Onboording";
+import Interneterror from "../../ExchangePool/Screnns/Interneterror";
 
 const StackCmp = () => {
   const Stack = createNativeStackNavigator();
@@ -72,11 +73,6 @@ const StackCmp = () => {
       <Stack.Screen
         name="WelcomPool"
         component={WelcomPool}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Dashbord"
-        component={Dashbord}
         options={{ headerShown: false }}
       />
       <Stack.Screen 
