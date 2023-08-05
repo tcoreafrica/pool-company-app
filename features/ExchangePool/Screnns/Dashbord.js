@@ -1,6 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import PoolLogo from "../../../constants/PoolLogo";
+import CompanyOrderLogo from "../../../constants/CompanyOrderLogo";
 
 const Dashbord = ({navigation}) => {
   return (
@@ -64,23 +66,34 @@ const Dashbord = ({navigation}) => {
         <View
           style={{ backgroundColor: "#E8F0FE", height: 150, width: "33.33%" }}
         >
-          <Text>26</Text>
-          <Text>Deliveries</Text>
-          <Text>Pulled from pool</Text>
+          <Text style={{alignSelf :'center'}}>26</Text>
+          <View style={{alignSelf :'center' , paddingVertical : 10}}>
+          <PoolLogo />
+          </View>
+          
+          <Text style={{alignSelf :'center'}}>Deliveries</Text>
+          <Text style={{alignSelf :'center'}}>Pulled from pool</Text>
         </View>
         <View
           style={{ backgroundColor: "#00CE2D", height: 150, width: "33.33%" }}
         >
-          <Text>26</Text>
-          <Text>Deliveries</Text>
-          <Text>Pulled from pool</Text>
+          <Text style={{alignSelf :'center'}}>26</Text>
+          <View style={{alignSelf :'center' , paddingVertical : 10}}>
+          <PoolLogo />
+          </View>
+          
+          <Text style={{alignSelf :'center'}}>Deliveries</Text>
+          <Text style={{alignSelf :'center'}}>Pulled from pool</Text>
         </View>
         <View
           style={{ backgroundColor: "#ED847E", height: 150, width: "33.33%" }}
         >
-          <Text>26</Text>
-          <Text>Orders</Text>
-          <Text>Pushed to pool</Text>
+          <Text style={{alignSelf :'center' }}>26</Text>
+          <View style={{alignSelf :'center' , paddingVertical : 10}}>
+          <PoolLogo />
+          </View>
+          <Text style={{alignSelf :'center'}}>Orders</Text>
+          <Text style={{alignSelf :'center'}}>Pushed to pool</Text>
         </View>
       </View>
       <View style={{ flexDirection: "row", marginTop: 20 }}>
