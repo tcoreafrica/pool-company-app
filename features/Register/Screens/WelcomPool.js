@@ -16,7 +16,7 @@ const WelcomPool = ({navigation}) => {
           borderRadius: 30,
           width: 100,
         }}
-        onPress={()=>navigation.navigate('Dashbord')}
+        onPress={()=>navigation.navigate('Dashboard')}
       >
         <Text style={{ padding: 10, alignSelf: "center" , color :'white' }}>Continue</Text>
       </TouchableOpacity>

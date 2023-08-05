@@ -1,23 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const Dashbord = ({navigation}) => {
   return (
-    <View style={{ marginHorizontal: 20, marginTop: 60 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <AntDesign name="bars" size={24} color="black" />
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>Dashbord</Text>
-        <TouchableOpacity>
-          <MaterialCommunityIcons
-            name="face-man-profile"
-            size={24}
-            color="black"
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={{ paddingTop: 20 }}>
+    <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+      
+      <View style={{  }}>
         <Text>Welcome Touchcore,</Text>
       </View>
       <View
@@ -57,6 +46,7 @@ const Dashbord = ({navigation}) => {
             marginHorizontal: 20,
             paddingTop: 15,
           }}
+          onPress={() => navigation.navigate("Success")}
         >
           <Text
             style={{
