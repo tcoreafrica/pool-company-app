@@ -3,8 +3,8 @@ import React from 'react'
 
 const Orders = () => {
   return (
-    <View>
-      <Text>Orders</Text>
+    <View style={{marginHorizontal : 10}}>
+      <Text style={{fontWeight :'bold' , fontSize : 22}}>Order Exchange Pool</Text>
     </View>
   )
 }
