@@ -15,6 +15,7 @@ import Dashbord from "../../ExchangePool/Screnns/Dashbord";
 import RegisterName from "../../Register/Screens/RegisterName";
 import Onboording from "../../Onboording/screens/Onboording";
 import Interneterror from "../../ExchangePool/Screnns/Interneterror";
+import RiderDetails from "../../Riders/Screens/RiderDetails";
 
 const StackCmp = () => {
   const Stack = createNativeStackNavigator();
@@ -82,6 +83,7 @@ const StackCmp = () => {
         headerShown: false
       }}
       />
+      
     </Stack.Navigator>
   );
 };

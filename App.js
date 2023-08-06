@@ -36,6 +36,7 @@ import DashLogo from "./constants/DashLogo";
 import OrdersLogo from "./constants/OrdersLogo";
 import RidersLogo from "./constants/RidersLogo";
 import TrackLogo from "./constants/TrackLogo";
+import RiderStack from "./features/Navigation/Stacks/RiderStack";
 
 const App = () => {
   const Tab = createBottomTabNavigator();
@@ -130,7 +131,7 @@ const App = () => {
         />
         <Tab.Screen
           name="Riders"
-          component={Riders}
+          component={RiderStack}
           options={{
             tabBarLabel: "Riders",
             tabBarIcon: ({ color, size }) => {
