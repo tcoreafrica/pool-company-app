@@ -9,7 +9,7 @@ const RiderStack = () => {
     const StackRider = createNativeStackNavigator();
   return (
     <StackRider.Navigator>
-        <StackRider.Screen name='Riders' component={Riders} options={{ headerShown: false }}/>
+        <StackRider.Screen name='Riders' component={Riders}/>
         <StackRider.Screen name='RiderDetails' component={RiderDetails} />
         <StackRider.Screen name='AssignOrders' component={AssignOrders} />
     </StackRider.Navigator>

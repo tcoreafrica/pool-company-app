@@ -10,10 +10,15 @@ import { ScrollView } from "react-native";
 import SearchBar from "../Components/SearchBar";
 import { Modal } from "react-native";
 import { Pressable } from "react-native";
+import PhaseLoso from "../../../constants/PhaseLogo";
+import { AntDesign } from "@expo/vector-icons";
+import TimeLogo from "../../../constants/TimeLogo";
 
 const AssignOrders = () => {
   const [searchText, setSearchText] = useState("");
+  const [searchTextModal , setSearchTextModal]=useState('');
   const [isModalVisible, setModalVisible] = useState(false);
+  const [modalvisible , setmodalvisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -25,44 +30,135 @@ const AssignOrders = () => {
   const renderItem = ({ item }) => (
     <>
       <TouchableOpacity
+      // onPress={() => setmodalvisible(!modalvisible)}
         style={{
           height: 80,
           flex: 1,
-          borderRadius: 5,
+          borderRadius: 2,
           marginHorizontal: 10,
           paddingHorizontal: 10,
           paddingVertical: 10,
           marginVertical: 6,
-          paddingLeft: 60,
+          paddingLeft: 40,
           elevation: 1,
         }}
       >
+        <View style={{ position: "absolute", top: 20, left: 15 }}>
+          <PhaseLoso />
+        </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text>{item.from}</Text>
-          <Text>{item.to}</Text>
-          <Text>{item.price}</Text>
+          <AntDesign name="arrowright" size={24} color="black" />
+          <Text style={{ fontSize: 12 }}>{item.to}</Text>
+          <Text style={{ fontWeight: "bold" }}>{item.price}</Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text>{item.date}</Text>
-          <Text>Express</Text>
+          <View style={{flexDirection :"row"}}>
+            <TimeLogo style={{marginVertical : 3}}/>
+          <Text style={{paddingLeft : 5}}>{item.date}</Text>
+          </View>
+          
+          <View style={{flexDirection :"row"}}>
+            <TimeLogo style={{marginVertical : 3 }} />
+          <Text style={{paddingLeft : 5 , color :'red'}}>Express</Text>
+          </View>
         </View>
       </TouchableOpacity>
+      {/* <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalvisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setmodalvisible(!modalvisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={{ fontWeight: "bold", paddingVertical: 10 }}>
+              Assign
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                source={require("../../../assets/TDele.png")}
+                style={{
+                  height: 40,
+                  width: 40,
+                  borderRadius: 20,
+                }}
+              />
+
+              <View style={{ paddingLeft: 10 }}>
+                <Text style={{ fontWeight: "bold" }}>
+                  Tosin Dele
+                </Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Entypo
+                    name="location-pin"
+                    size={24}
+                    color="black"
+                    style={{ marginRight: 2 }}
+                  />
+                  <Text>Ikeja, Lagos.</Text>
+                </View>
+              </View>
+              <View style={{ paddingLeft: 30 }}>
+                <Text style={{ fontWeight: "bold", paddingVertical: 2 }}>
+                  to :{" "}
+                </Text>
+              </View>
+            </View>
+            <View style={{ marginVertical: 20 }}>
+              <Text style={{ fontWeight: "bold", alignSelf: "center" }}>
+                Select order from company order list
+              </Text>
+            </View>
+            <View>
+              <SearchBar
+                placeholder="Search..."
+                onChangeText={handleSearchChange}
+                value={searchText}
+              />
+            </View>
+            <View>
+              <View style={{ marginVertical: 10 }}>
+                <Text style={{fontSize : 15 , fontWeight :"600"}}>Ikeja</Text>
+              </View>
+              
+            </View>
+            <TouchableOpacity
+              style={{
+                borderRadius: 20,
+                backgroundColor: "blue",
+                height : 40,
+                elevation: 2,
+                marginTop :10
+              }}
+              onPress={() => setmodalvisible(!modalvisible)}
+            >
+              <Text style={{alignSelf : 'center' , paddingVertical : 10   , color : 'white' , fontWeight :'800'}}>close</Text>
+            </TouchableOpacity>
+            
+          </View>
+        </View>
+      </Modal> */}
     </>
   );
   const renderItem2 = ({ item }) => (
-    <View>
+    <View style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={toggleModal}
         style={{
           height: 91,
           flex: 1,
-          borderRadius: 5,
-          elevation: 3, // Add shadow for Android (higher values for stronger shadow)
+          borderRadius: 4,
+          elevation: 0.5, // Add shadow for Android (higher values for stronger shadow)
           marginHorizontal: 10,
           paddingHorizontal: 10,
           paddingVertical: 10,
           marginVertical: 6,
           paddingLeft: 60,
+          shadowColor : "gray"
         }}
       >
         <View style={{}}>
@@ -139,31 +235,78 @@ const AssignOrders = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{}}>Assign</Text>
-            <View style={{flexDirection :'row'}}>
-            <Image
-            source={require('../../../assets/TDele.png')}
-            style={{
-              height: 40,
-              width: 40,
-              borderRadius: 20,
-              
-            }}
-          />
-          
-          <View style={{paddingLeft : 5}}>
-          <Text>Tosin Dele</Text>
-          <Text>Ikeja, Lagos.</Text>
-          <Text>to : </Text>
-          </View>
-          
+            <Text style={{ fontWeight: "bold", paddingVertical: 10 }}>
+              Assign
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                source={require("../../../assets/TDele.png")}
+                style={{
+                  height: 40,
+                  width: 40,
+                  borderRadius: 20,
+                }}
+              />
+
+              <View style={{ paddingLeft: 10 }}>
+                <Text style={{ fontWeight: "bold" }}>
+                  Tosin Dele
+                </Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Entypo
+                    name="location-pin"
+                    size={24}
+                    color="black"
+                    style={{ marginRight: 2 }}
+                  />
+                  <Text>Ikeja, Lagos.</Text>
+                </View>
+              </View>
+              <View style={{ paddingLeft: 30 }}>
+                <Text style={{ fontWeight: "bold", paddingVertical: 2 }}>
+                  to :{" "}
+                </Text>
+              </View>
             </View>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
+            <View style={{ marginVertical: 20 }}>
+              <Text style={{ fontWeight: "bold", alignSelf: "center" }}>
+                Select order from company order list
+              </Text>
+            </View>
+            <View>
+              <SearchBar
+                placeholder="Search..."
+                onChangeText={handleSearchChange}
+                value={searchText}
+              />
+            </View>
+            <View>
+              <View style={{ marginVertical: 10 }}>
+                <Text style={{fontSize : 15 , fontWeight :"600"}}>Ikeja</Text>
+              </View>
+              <View style={{}}>
+                <FlatList
+                  data={dummydata2}
+                  keyExtractor={(item) => item.id.toString()}
+                  renderItem={renderItem}
+                  style={{}}
+                />
+              </View>
+              
+            </View>
+            <TouchableOpacity
+              style={{
+                borderRadius: 20,
+                backgroundColor: "blue",
+                height : 40,
+                elevation: 2,
+                marginTop :10
+              }}
               onPress={() => setModalVisible(!isModalVisible)}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <Text style={{alignSelf : 'center' , paddingVertical : 10   , color : 'white' , fontWeight :'800'}}>close</Text>
+            </TouchableOpacity>
+            
           </View>
         </View>
       </Modal>
@@ -216,34 +359,32 @@ export default AssignOrders;
 
 const styles = StyleSheet.create({
   centeredView: {
-    height : '80%',
-    width :"100%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    
-    backgroundColor :'red',
-    position :'absolute',
-    bottom : 0
+    backgroundColor: "rgba(0, 0, 0, 0.15)",
   },
   modalView: {
-    
-    width : "100%",
-    height : "100%",
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
-    shadowColor: "#000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,
     },
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: "80%",
   },
   button: {
     borderRadius: 20,
-    padding: 10,
+
     elevation: 2,
   },
   buttonOpen: {
@@ -255,10 +396,10 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
+    alignSelf :"center"
   },
   modalText: {
-    marginBottom: 15,
-    textAlign: "center",
+    
+    alignSelf :"center"
   },
 });
