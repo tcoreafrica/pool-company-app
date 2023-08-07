@@ -276,7 +276,7 @@ const App = () => {
         initialRouteName="Onboording"
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Dashboard" component={BottomTabNavigator} />
+        <Drawer.Screen name="Dashboard" component={BottomTabNavigator} options={{headerShown : false}}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );

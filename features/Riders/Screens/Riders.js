@@ -18,10 +18,10 @@ const Riders = () => {
     <TouchableOpacity
     onPress={goToDetails}
       style={{
-        height: 91,
+        height: "100%",
         flex: 1,
-        borderRadius: 5,
-        elevation: 3, // Add shadow for Android (higher values for stronger shadow)
+        borderRadius: 2,
+        elevation: 0.5, // Add shadow for Android (higher values for stronger shadow)
         // shadowColor: "#000000", // Add shadow for iOS
         // shadowOffset: { width: 0, height: 1 },
         // shadowOpacity: 0.05,
@@ -97,7 +97,7 @@ const Riders = () => {
   );
 
   return (
-    <View style={{ backgroundColor: "white", flex: 1 }}>
+    <View style={{ backgroundColor: "white", flex: 1  }}>
       <View
         style={{
           marginHorizontal: 10,
@@ -106,10 +106,10 @@ const Riders = () => {
           backgroundColor: "white",
         }}
       >
-        <Text style={{ fontWeight: "bold", fontSize: 22 }}>Riders</Text>
+        {/* <Text style={{ fontWeight: "bold", fontSize: 22 }}>Riders</Text>
         <TouchableOpacity>
           <Icon name="search" size={18} style={{}} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View
         style={{
