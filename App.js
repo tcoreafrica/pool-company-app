@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
@@ -38,10 +38,17 @@ import RidersLogo from "./constants/RidersLogo";
 import TrackLogo from "./constants/TrackLogo";
 import RiderStack from "./features/Navigation/Stacks/RiderStack";
 import TrackerStack from "./features/Navigation/Stacks/TrackerStack";
+import Support from "./features/DrawerPool/Screens/Support";
+import SupportStack from "./features/Navigation/Stacks/SupportStack";
+import { Share } from "react-native";
+import ProfileStack from "./features/Navigation/Stacks/ProfileStack";
+import ProfileScreen from "./features/DrawerPool/Screens/ProfileScreen";
+
 
 const App = () => {
   const Tab = createBottomTabNavigator();
   const Drawer = createDrawerNavigator();
+
   const DrawerScreenOptions = {
     drawerStyle: {
       // Customize the drawer styles
@@ -55,7 +62,7 @@ const App = () => {
       labelStyle: {
         fontSize: 16,
         fontWeight: "bold",
-      }
+      },
     },
   };
   function BottomTabNavigator() {
@@ -112,9 +119,7 @@ const App = () => {
           options={{
             tabBarLabel: "Dash",
             tabBarIcon: ({ color, size }) => {
-              return (
-                <DashLogo />
-              );
+              return <DashLogo />;
             },
           }}
         />
@@ -124,9 +129,7 @@ const App = () => {
           options={{
             tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => {
-              return (
-                <OrdersLogo />
-              );
+              return <OrdersLogo />;
             },
           }}
         />
@@ -136,9 +139,7 @@ const App = () => {
           options={{
             tabBarLabel: "Riders",
             tabBarIcon: ({ color, size }) => {
-              return (
-                <RidersLogo />
-              );
+              return <RidersLogo />;
             },
           }}
         />
@@ -149,25 +150,47 @@ const App = () => {
           options={{
             tabBarLabel: "Track",
             tabBarIcon: ({ color, size }) => {
-              return (
-                <TrackLogo />
-              );
+              return <TrackLogo />;
             },
           }}
         />
       </Tab.Navigator>
     );
   }
+  const shareApp = async () => {
+    try {
+      const result = await Share.share({
+        message: "Check out this awesome app!",
+        url: "https://your-app-download-link.com", // Replace with your app's download link
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // Shared successfully
+          console.log(`Shared via ${result.activityType}`);
+        } else {
+          // Shared successfully
+          console.log("Shared");
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // Sharing dismissed
+        console.log("Share dismissed");
+      }
+    } catch (error) {
+      console.error("Error sharing app:", error.message);
+    }
+  };
   const CustomDrawerContent = (props) => {
     const { navigation } = props;
+    const nav = useNavigation();
     return (
       <DrawerContentScrollView {...props}>
         <View style={{ position: "absolute", right: 10, top: 44 }}>
-        <TouchableOpacity onPress={() => navigation.closeDrawer()} >
-          <DrawerLogo />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.closeDrawer()}>
+            <DrawerLogo />
+          </TouchableOpacity>
         </View>
-        
+
         <View style={{ height: 200, paddingTop: 55 }}>
           <View style={{ position: "absolute", right: 10, top: 50 }}>
             <Text style={{}}>Wallet:</Text>
@@ -227,7 +250,7 @@ const App = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <DrawerItemList {...props} />
+        {/* <DrawerItemList {...props} /> */}
         <DrawerItem
           label="Schedule delivery"
           icon={({ focused, color, size }) => <Scheduellogo />}
@@ -251,17 +274,17 @@ const App = () => {
         <DrawerItem
           label="Profile summary"
           icon={({ focused, color, size }) => <ProfileLogo />}
-          // onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate("Profile")}
         />
         <DrawerItem
           label="Support"
           icon={({ focused, color, size }) => <SupportLogo />}
-          // onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate("Support")}
         />
         <DrawerItem
           label="Share App"
           icon={({ focused, color, size }) => <ShareLogo />}
-          // onPress={() => props.navigation.navigate('Profile')}
+          onPress={shareApp}
         />
         {/* Add more screens with icons as needed */}
       </DrawerContentScrollView>
@@ -274,10 +297,28 @@ const App = () => {
       {/* <BottomTabNavigator />   */}
       <Drawer.Navigator
         screenOptions={DrawerScreenOptions}
-        initialRouteName="Onboording"
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Dashboard" component={BottomTabNavigator} options={{headerShown : false}}/>
+        <Drawer.Screen
+          name="Stack"
+          component={StackCmp}
+          options={{ headerShown: false  }}
+        />
+        <Drawer.Screen
+          name="Dashboard"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Drawer.Screen
+          name="Support"
+          component={SupportStack}
+          options={{ headerShown: false }}
+        />
+        <Drawer.Screen
+          name="Profile"
+          component={ProfileStack}
+          options={{ headerShown: false  }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
