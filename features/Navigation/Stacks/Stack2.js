@@ -5,6 +5,7 @@ import Dashbord from "../../ExchangePool/Screnns/Dashbord";
 import Interneterror from "../../ExchangePool/Screnns/Interneterror";
 import Success from "../../ExchangePool/Screnns/Success";
 import RiderDetails from "../../Riders/Screens/RiderDetails";
+import Support from "../../DrawerPool/Screens/Support";
 
 const StackCmp2 = () => {
   const Stack2 = createNativeStackNavigator();
@@ -25,6 +26,7 @@ const StackCmp2 = () => {
         component={Success}
         options={{ headerShown: false }}
       />
+      
       
       
     </Stack2.Navigator>

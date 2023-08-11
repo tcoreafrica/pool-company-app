@@ -82,6 +82,7 @@ const StackCmp = () => {
       options={{
         headerShown: false
       }}
+      
       />
       
     </Stack.Navigator>
