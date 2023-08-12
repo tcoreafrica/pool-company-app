@@ -9,10 +9,10 @@ import TimeLogo from "../../../constants/TimeLogo";
 import { useNavigation } from "@react-navigation/native";
 
 const OrderFlatlist = ({}) => {
-    const navigation = useNavigation()
+  const navigation = useNavigation();
   const renderItem = ({ item }) => (
     <TouchableOpacity
-    onPress={()=>navigation.navigate('DeliveryDetails')}
+      onPress={() => navigation.navigate("DeliveryDetails")}
       style={{
         height: 80,
         flex: 1,
