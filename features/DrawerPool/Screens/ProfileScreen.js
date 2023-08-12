@@ -6,12 +6,13 @@ import { TouchableOpacity } from "react-native";
 
 const ProfileScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 10 }}>
+    <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 15 }}>
       <View
         style={{
           backgroundColor: "white",
           flexDirection: "row",
           justifyContent: "space-between",
+          marginTop : 10
         }}
       >
         <AvatarLogo />
@@ -25,7 +26,7 @@ const ProfileScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View style={{marginTop : 5}}>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
           Touchcore Deliveries
         </Text>
@@ -60,8 +61,8 @@ const ProfileScreen = ({ navigation }) => {
       >
         <Text style={{alignSelf :'center' , paddingVertical : 10 , color : 'white' , fontSize : 16 , fontWeight : 'bold'}}>View registration</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{ position: "absolute", bottom: 0 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 17, padding: 10 }}>
+      <TouchableOpacity style={{  backgroundColor :'blue' , height : 40 , borderRadius : 10 }}>
+        <Text style={{ fontWeight: "bold", fontSize: 17, paddingVertical : 7 , alignSelf :'center'  ,color :'white'}}>
           Sign Out
         </Text>
       </TouchableOpacity>

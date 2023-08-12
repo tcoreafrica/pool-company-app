@@ -8,8 +8,8 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splach2.png",
-      "resizeMode": "contain",
-      "backgroundColor": "white"
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
     },
     "plugins": [
       [
@@ -32,11 +32,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon1.png",
-        "backgroundColor": "white"
+        "backgroundColor": "#ffffff"
       },
       "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.RECORD_AUDIO"
       ],
       "package": "com.zayd_mazhour.zayd_app_mobile"
     },
@@ -47,6 +48,12 @@
       "eas": {
         "projectId": "62b0e4c9-2b43-4535-9ff9-8ec35c7688e1"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/62b0e4c9-2b43-4535-9ff9-8ec35c7688e1"
     }
   }
 }

@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import { BottomNavigation } from "react-native-paper";
@@ -43,7 +43,8 @@ import SupportStack from "./features/Navigation/Stacks/SupportStack";
 import { Share } from "react-native";
 import ProfileStack from "./features/Navigation/Stacks/ProfileStack";
 import ProfileScreen from "./features/DrawerPool/Screens/ProfileScreen";
-
+import DelivryHistory from "./features/DrawerPool/Screens/DelivryHistory";
+import ScheduleStack from "./features/Navigation/Stacks/ScheduleStack";
 
 const App = () => {
   const Tab = createBottomTabNavigator();
@@ -182,10 +183,10 @@ const App = () => {
   };
   const CustomDrawerContent = (props) => {
     const { navigation } = props;
-    const nav = useNavigation();
+
     return (
       <DrawerContentScrollView {...props}>
-        <View style={{ position: "absolute", right: 10, top: 44 }}>
+        <View style={{ position: "absolute", right: 10, top: 24 }}>
           <TouchableOpacity onPress={() => navigation.closeDrawer()}>
             <DrawerLogo />
           </TouchableOpacity>
@@ -254,12 +255,12 @@ const App = () => {
         <DrawerItem
           label="Schedule delivery"
           icon={({ focused, color, size }) => <Scheduellogo />}
-          // onPress={() => props.navigation.navigate('Home')}
+          onPress={() => props.navigation.navigate("ScheduleStack")}
         />
         <DrawerItem
           label="Delivery History"
           icon={({ focused, color, size }) => <DelivryLogo />}
-          // onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate("DelivryHistory")}
         />
         <DrawerItem
           label="Payments"
@@ -302,7 +303,7 @@ const App = () => {
         <Drawer.Screen
           name="Stack"
           component={StackCmp}
-          options={{ headerShown: false  }}
+          options={{ headerShown: false }}
         />
         <Drawer.Screen
           name="Dashboard"
@@ -317,7 +318,17 @@ const App = () => {
         <Drawer.Screen
           name="Profile"
           component={ProfileStack}
-          options={{ headerShown: false  }}
+          options={{ headerShown: false }}
+        />
+        <Drawer.Screen
+          name="DelivryHistory"
+          component={DelivryHistory}
+          
+        />
+        <Drawer.Screen
+          name="ScheduleStack"
+          component={ScheduleStack}
+          options={{ headerShown: false }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
