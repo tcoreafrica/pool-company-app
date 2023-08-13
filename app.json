@@ -7,9 +7,9 @@
     "icon": "./assets/icon1.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splach2.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#000000"
+      "image": "./assets/Splach.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
     },
     "plugins": [
       [

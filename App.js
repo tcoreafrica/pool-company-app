@@ -11,7 +11,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Dashbord from "./features/ExchangePool/Screnns/Dashbord";
 import Stack2 from "./features/Navigation/Stacks/Stack2";
 import StackCmp2 from "./features/Navigation/Stacks/Stack2";
-import Orders from "./features/ExchangePool/Screnns/Orders";
+import Orders from "./features/Orders/Screens/Orders";
 import { CommonActions } from "@react-navigation/native";
 import Riders from "./features/Riders/Screens/Riders";
 import Track from "./features/Track/Screens/Track";
@@ -45,6 +45,7 @@ import ProfileStack from "./features/Navigation/Stacks/ProfileStack";
 import ProfileScreen from "./features/DrawerPool/Screens/ProfileScreen";
 import DelivryHistory from "./features/DrawerPool/Screens/DelivryHistory";
 import ScheduleStack from "./features/Navigation/Stacks/ScheduleStack";
+import OrderStack from "./features/Navigation/Stacks/OrderStack";
 
 const App = () => {
   const Tab = createBottomTabNavigator();
@@ -125,8 +126,8 @@ const App = () => {
           }}
         />
         <Tab.Screen
-          name="Orders"
-          component={Orders}
+          name="OrderStack"
+          component={OrderStack}
           options={{
             tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => {
@@ -328,6 +329,11 @@ const App = () => {
         <Drawer.Screen
           name="ScheduleStack"
           component={ScheduleStack}
+          options={{ headerShown: false }}
+        />
+        <Drawer.Screen
+          name="OrderStack"
+          component={OrderStack}
           options={{ headerShown: false }}
         />
       </Drawer.Navigator>
