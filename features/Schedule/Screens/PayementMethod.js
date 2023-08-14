@@ -17,12 +17,12 @@ const PayementMethod = ({navigation}) => {
         Select payment method
       </Text>
       <View
-        style={{ height: 410, backgroundColor: "#EDE9E9", borderRadius: 30 }}
+        style={{ height: 410, backgroundColor: "white", borderRadius: 30 }}
       >
         <TouchableOpacity
           style={{
             height: 90,
-            backgroundColor: "white",
+            backgroundColor: "#EDE9E9",
             borderRadius: 30,
             flexDirection: "row",
             paddingLeft : 50,
@@ -55,7 +55,7 @@ const PayementMethod = ({navigation}) => {
           <TouchableOpacity
           style={{
             height: 90,
-            backgroundColor: "white",
+            backgroundColor: "#EDE9E9",
             borderRadius: 30,
             flexDirection: "row",
             paddingLeft : 50,
@@ -84,7 +84,7 @@ const PayementMethod = ({navigation}) => {
         <TouchableOpacity
           style={{
             height: 90,
-            backgroundColor: "white",
+            backgroundColor: "#EDE9E9",
             borderRadius: 30,
             flexDirection: "row",
             paddingLeft : 50,
@@ -114,7 +114,7 @@ const PayementMethod = ({navigation}) => {
         <TouchableOpacity
           style={{
             height: 90,
-            backgroundColor: "white",
+            backgroundColor: "#EDE9E9",
             borderRadius: 30,
             flexDirection: "row",
             paddingLeft : 50,

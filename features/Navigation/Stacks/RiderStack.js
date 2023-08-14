@@ -10,7 +10,7 @@ const RiderStack = () => {
   return (
     <StackRider.Navigator>
         <StackRider.Screen name='Riders' component={Riders}/>
-        <StackRider.Screen name='RiderDetails' component={RiderDetails} />
+        <StackRider.Screen name='RiderDetails' component={RiderDetails} options={{title :'Rider Details'}}/>
         <StackRider.Screen name='AssignOrders' component={AssignOrders} />
     </StackRider.Navigator>
   )

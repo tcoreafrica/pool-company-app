@@ -16,9 +16,9 @@ import TimeLogo from "../../../constants/TimeLogo";
 
 const AssignOrders = () => {
   const [searchText, setSearchText] = useState("");
-  const [searchTextModal , setSearchTextModal]=useState('');
+  const [searchTextModal, setSearchTextModal] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
-  const [modalvisible , setmodalvisible] = useState(false);
+  const [modalvisible, setmodalvisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -30,17 +30,18 @@ const AssignOrders = () => {
   const renderItem = ({ item }) => (
     <>
       <TouchableOpacity
-      // onPress={() => setmodalvisible(!modalvisible)}
+        // onPress={() => setmodalvisible(!modalvisible)}
         style={{
           height: 80,
           flex: 1,
-          borderRadius: 2,
+          borderRadius: 10,
           marginHorizontal: 10,
           paddingHorizontal: 10,
           paddingVertical: 10,
           marginVertical: 6,
           paddingLeft: 40,
-          elevation: 1,
+          borderColor: "#DCD9D9",
+          borderWidth: 1,
         }}
       >
         <View style={{ position: "absolute", top: 20, left: 15 }}>
@@ -53,14 +54,14 @@ const AssignOrders = () => {
           <Text style={{ fontWeight: "bold" }}>{item.price}</Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <View style={{flexDirection :"row"}}>
-            <TimeLogo style={{marginVertical : 3}}/>
-          <Text style={{paddingLeft : 5}}>{item.date}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <TimeLogo style={{ marginVertical: 3 }} />
+            <Text style={{ paddingLeft: 5 }}>{item.date}</Text>
           </View>
-          
-          <View style={{flexDirection :"row"}}>
-            <TimeLogo style={{marginVertical : 3 }} />
-          <Text style={{paddingLeft : 5 , color :'red'}}>Express</Text>
+
+          <View style={{ flexDirection: "row" }}>
+            <TimeLogo style={{ marginVertical: 3 }} />
+            <Text style={{ paddingLeft: 5, color: "red" }}>Express</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -151,14 +152,15 @@ const AssignOrders = () => {
         style={{
           height: 91,
           flex: 1,
-          borderRadius: 4,
-          elevation: 0.5, // Add shadow for Android (higher values for stronger shadow)
+          borderRadius: 10,
+          borderColor: "#DCD9D9",
+          borderWidth: 1,
           marginHorizontal: 10,
           paddingHorizontal: 10,
           paddingVertical: 10,
           marginVertical: 6,
           paddingLeft: 60,
-          shadowColor : "gray"
+          shadowColor: "gray",
         }}
       >
         <View style={{}}>
@@ -204,6 +206,7 @@ const AssignOrders = () => {
           </View>
 
           <TouchableOpacity
+            onPress={() => setmodalvisible(true)}
             style={{
               backgroundColor: "#053582",
               borderRadius: 8,
@@ -249,9 +252,7 @@ const AssignOrders = () => {
               />
 
               <View style={{ paddingLeft: 10 }}>
-                <Text style={{ fontWeight: "bold" }}>
-                  Tosin Dele
-                </Text>
+                <Text style={{ fontWeight: "bold" }}>Tosin Dele</Text>
                 <View style={{ flexDirection: "row" }}>
                   <Entypo
                     name="location-pin"
@@ -282,7 +283,7 @@ const AssignOrders = () => {
             </View>
             <View>
               <View style={{ marginVertical: 10 }}>
-                <Text style={{fontSize : 15 , fontWeight :"600"}}>Ikeja</Text>
+                <Text style={{ fontSize: 15, fontWeight: "600" }}>Ikeja</Text>
               </View>
               <View style={{}}>
                 <FlatList
@@ -292,21 +293,143 @@ const AssignOrders = () => {
                   style={{}}
                 />
               </View>
-              
             </View>
             <TouchableOpacity
               style={{
                 borderRadius: 20,
-                backgroundColor: "blue",
-                height : 40,
+                backgroundColor: "#053582",
+                height: 40,
                 elevation: 2,
-                marginTop :10
+                marginTop: 10,
               }}
               onPress={() => setModalVisible(!isModalVisible)}
             >
-              <Text style={{alignSelf : 'center' , paddingVertical : 10   , color : 'white' , fontWeight :'800'}}>close</Text>
+              <Text
+                style={{
+                  alignSelf: "center",
+                  paddingVertical: 10,
+                  color: "white",
+                  fontWeight: "800",
+                }}
+              >
+                close
+              </Text>
             </TouchableOpacity>
-            
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalvisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setmodalvisible(!modalvisible);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.15)",
+            marginTop: 22,
+          }}
+        >
+          <View
+            style={{
+              margin: 20,
+              backgroundColor: "white",
+              borderRadius: 20,
+              padding: 35,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 4,
+              elevation: 5,
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                source={require("../../../assets/TDele.png")}
+                style={{
+                  height: 40,
+                  width: 40,
+                  borderRadius: 20,
+                }}
+              />
+
+              <View style={{ paddingLeft: 10 }}>
+                <Text style={{ fontWeight: "bold" }}>Tosin Dele</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Entypo
+                    name="location-pin"
+                    size={24}
+                    color="black"
+                    style={{ marginRight: 2 }}
+                  />
+                  <Text>Ikeja, Lagos.</Text>
+                </View>
+              </View>
+              <View style={{ paddingLeft: 30 }}>
+                <Text style={{ fontWeight: "bold", paddingVertical: 2 }}>
+                  to :{" "}
+                </Text>
+              </View>
+            </View>
+            <View style={{marginTop : 8}}>
+              <Text style={{alignSelf : 'center' , fontWeight :'bold' , fontSize : 20}}>to order</Text>
+            </View>
+            <View style={{marginTop : 8 , flexDirection : 'row', justifyContent:'space-between'}}>
+                <Text>Phase 1, Lekki</Text>
+                <Text>Oba Akran, Ikeja</Text>
+            </View>
+            <View style={{ marginTop: 20 }}>
+              <TouchableOpacity
+                // onPress={()=>navigation.navigate('FinaleScreen')}
+                style={{
+                  height: 40,
+                  backgroundColor: "#053582",
+                  borderRadius: 10,
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    alignSelf: "center",
+                    paddingVertical: 7,
+                    fontSize: 17,
+                  }}
+                >
+                  Yes
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ marginVertical: 15 }}>
+              <TouchableOpacity
+                onPress={() => setmodalvisible(!modalvisible)}
+                style={{
+                  height: 40,
+                  backgroundColor: "white",
+                  borderRadius: 10,
+                }}
+              >
+                <Text
+                  style={{
+                    color: "black",
+                    fontWeight: "bold",
+                    alignSelf: "center",
+                    paddingVertical: 7,
+                    fontSize: 17,
+                  }}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
@@ -320,7 +443,15 @@ const AssignOrders = () => {
         renderItem={renderItem}
       />
       <TouchableOpacity style={{}}>
-        <Text style={{ alignSelf: "center", fontSize: 16, fontWeight: "500" }}>
+        <Text
+          style={{
+            alignSelf: "center",
+            fontSize: 16,
+            fontWeight: "500",
+            marginTop: 5,
+            marginBottom: 5,
+          }}
+        >
           Select rider
         </Text>
       </TouchableOpacity>
@@ -334,7 +465,7 @@ const AssignOrders = () => {
       >
         <Text style={{}}>Search order</Text>
       </TextInput> */}
-      <View style={{ marginHorizontal: 20 }}>
+      <View style={{ marginHorizontal: 20, marginBottom: 5 }}>
         <SearchBar
           placeholder="Search..."
           onChangeText={handleSearchChange}
@@ -342,9 +473,6 @@ const AssignOrders = () => {
         />
       </View>
 
-      <View
-        style={{ height: 1, marginTop: 10, backgroundColor: "black" }}
-      ></View>
       <FlatList
         data={dummydata}
         keyExtractor={(item) => item.id.toString()}
@@ -396,10 +524,9 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    alignSelf :"center"
+    alignSelf: "center",
   },
   modalText: {
-    
-    alignSelf :"center"
+    alignSelf: "center",
   },
 });
