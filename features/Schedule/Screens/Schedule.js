@@ -3,9 +3,11 @@ import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AddressForm from "../Components/AddressForm";
 import Distance from "../../../constants/Distance";
-import Fromto from "../../../constants/fromto";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
+import FromtoImg from "../../../constants/FromtoImg";
+
+
 const data = [
   {
     id: "1",
@@ -46,7 +48,7 @@ const Schedule = ({navigation}) => {
         <AddressForm />
       </View>
       <View style={{ flexDirection: "row" , paddingHorizontal : 15}}>
-        <Fromto />
+        <FromtoImg />
         <Text style={{ paddingLeft: 8 }}>Estimated distance:</Text>
       </View>
       <View style={{ flexDirection: "row", marginTop: 15  , paddingHorizontal : 15 }}>

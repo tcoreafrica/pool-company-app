@@ -5,10 +5,10 @@ import { TouchableOpacity } from 'react-native'
 const PayementGateway = ({navigation}) => {
   return (
     <View style={{flex : 1 , backgroundColor: "white"  , paddingHorizontal : 20 }}>
-      <View style={{flex : 1,backgroundColor: "#D9D9D9" }}>
-            <Text style={{fontSize : 34 , alignSelf : 'center',fontWeight : 'bold' , marginTop : 100}}>Payment gateway modal</Text>
+      <View style={{flex : 1,backgroundColor: "#D9D9D9" , marginTop : 20}}>
+            <Text style={{fontSize : 45 , alignSelf : 'center',fontWeight : 'bold' , marginTop : 100}}>Payment gateway modal</Text>
       </View>
-      <View style={{ paddingTop: 100 }}>
+      <View style={{ paddingTop: 50 }}>
         <TouchableOpacity
           onPress={() => navigation.navigate("Card")}
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}

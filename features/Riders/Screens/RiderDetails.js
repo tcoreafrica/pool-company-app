@@ -14,13 +14,14 @@ const RiderDetails = ({ navigation }) => {
         style={{
           height: 80,
           flex: 1,
-          borderRadius: 2,
+          borderRadius: 10,
           marginHorizontal: 10,
           paddingHorizontal: 10,
           paddingVertical: 10,
           marginVertical: 6,
           paddingLeft: 40,
-          elevation: 1,
+          borderColor : "#DCD9D9",
+          borderWidth : 1
         }}
       >
         <View style={{ position: "absolute", top: 17, left: 15 }}>
@@ -50,13 +51,13 @@ const RiderDetails = ({ navigation }) => {
       style={{
         height: 110,
         flex: 1,
-        borderRadius: 2,
+        borderRadius: 10,
         marginHorizontal: 10,
         paddingHorizontal: 10,
         paddingVertical: 10,
         marginVertical: 6,
-        
-        elevation: 0.5
+        borderColor : "#DCD9D9",
+        borderWidth : 1
       }}
     >
         <View style={{flexDirection :'row' }}>
@@ -82,10 +83,11 @@ const RiderDetails = ({ navigation }) => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
+          marginTop : 20
         }}
       >
         <View>
-          <Text>Earning:</Text>
+          <Text style={{color :'#8F9399'}}>Earning:</Text>
           <Text style={{fontWeight :'bold'}}>N104,850</Text>
         </View>
 
@@ -94,7 +96,11 @@ const RiderDetails = ({ navigation }) => {
           style={{ height: 60, width: 60, borderRadius: 30 }}
         />
         <View style={{}}>
-          <Text style={{ alignSelf: "center" , fontWeight :'bold' }}>4.5</Text>
+          <View style={{flexDirection :'row' , marginBottom : 10 , alignSelf :'center'}}>
+          <Text style={{ alignSelf: "center" , fontWeight :'bold' , paddingRight : 8 }}>4.5</Text>
+          <AntDesign name="star" size={19} color="#FEA250" />
+          </View>
+          
           <Text style={{fontWeight : '300'}}>12th July, 2010</Text>
         </View>
       </View>
@@ -103,7 +109,7 @@ const RiderDetails = ({ navigation }) => {
         <Text style={{fontWeight : '300'}}>450 deliveries</Text>
       </View>
       <View style={{ marginTop: 17 }}>
-        <Text>tosinbay@gmail.com</Text>
+        <Text style={{color :'#8F9399'}}>tosinbay@gmail.com</Text>
         <Text >08123232323</Text>
       </View>
       <View
@@ -114,7 +120,7 @@ const RiderDetails = ({ navigation }) => {
         }}
       >
         <View>
-          <Text>Adress</Text>
+          <Text style={{color :'#8F9399'}}>Adress</Text>
           <Text style={{fontWeight :'bold' , fontSize : 14}}>23, Idowu Str. Elliot, Ogba.</Text>
         </View>
 
@@ -147,11 +153,11 @@ const RiderDetails = ({ navigation }) => {
         <Text style={{fontWeight :'bold' , paddingLeft : 8 , marginVertical :5}}>LAGLX2C</Text>
       </View>
       <View style={{ marginTop: 10 }}>
-        <Text >Deliveries</Text>
+        <Text style={{color :'#8F9399'}}>Deliveries</Text>
         <Text style={{fontWeight :'bold'}}>400</Text>
       </View>
       <View style={{ marginTop: 10 }}>
-        <Text>Cancelled</Text>
+        <Text style={{color :'#8F9399'}}>Cancelled</Text>
         <Text style={{fontWeight :'bold'}}>17</Text>
       </View>
       <View

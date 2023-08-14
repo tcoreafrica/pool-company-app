@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-function Fromto(props) {
+function FromtoImg(props) {
   return (
     <Svg
       width={18}
@@ -19,4 +19,4 @@ function Fromto(props) {
   )
 }
 
-export default Fromto
+export default FromtoImg
