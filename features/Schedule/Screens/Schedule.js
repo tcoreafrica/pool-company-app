@@ -3,9 +3,13 @@ import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AddressForm from "../Components/AddressForm";
 import Distance from "../../../constants/Distance";
-import Fromto from "../../../constants/Fromto";
+ import Fromto from "../../../constants/Fromto";
+ 
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
+import FromtoImg from "../../../constants/FromtoImg";
+
+
 const data = [
   {
     id: "1",
@@ -22,6 +26,16 @@ const data = [
     title: "Image 3",
     imageUrl: "https://randomuser.me/api/portraits/men/29.jpg",
   },
+  {
+    id: "4",
+    title: "Image 4",
+    imageUrl: "https://randomuser.me/api/portraits/men/20.jpg",
+  },
+  {
+    id: "5",
+    title: "Image 5",
+    imageUrl: "https://randomuser.me/api/portraits/men/20.jpg",
+  },
   // Add more items as needed
 ];
 
@@ -29,7 +43,7 @@ const Schedule = ({navigation}) => {
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Image source={{ uri: item.imageUrl }} style={styles.image} />
-      <Text style={styles.title}>{item.title}</Text>
+      {/* <Text style={styles.title}>{item.title}</Text> */}
     </View>
   );
   return (
@@ -42,11 +56,11 @@ const Schedule = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
       />
       <StatusBar style="auto" />
-      <View style={{ backgroundColor: "red" }}>
+      <View style={{  marginTop  : 20 }}>
         <AddressForm />
       </View>
-      <View style={{ flexDirection: "row" , paddingHorizontal : 15}}>
-        <Fromto />
+      <View style={{ flexDirection: "row" , paddingHorizontal : 15 , marginTop : 20}}>
+        <FromtoImg />
         <Text style={{ paddingLeft: 8 }}>Estimated distance:</Text>
       </View>
       <View style={{ flexDirection: "row", marginTop: 15  , paddingHorizontal : 15 }}>
@@ -62,60 +76,65 @@ const Schedule = ({navigation}) => {
           50km
         </Text>
       </View>
-      <View style={{paddingHorizontal : 15 }}>
-        <Text>Select Delivery Type:</Text>
+      <View style={{paddingHorizontal : 15 , marginTop : 20}}>
+        <Text style={{fontSize : 15 , marginBottom : 5}}>Select Delivery Type:</Text>
         <TouchableOpacity
           style={{
             flexDirection: "row",
             paddingVertical: 15,
             justifyContent: "space-between",
-            backgroundColor:'#EBEBEB',
+            backgroundColor:'#F8F7F7',
             marginVertical : 5,
-            paddingHorizontal : 10
-          }}
-        >
-          <Text>Express:</Text>
-          <Text>N2,000</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            paddingVertical: 15,
-            justifyContent: "space-between",
-            backgroundColor:'#EBEBEB',
-            marginVertical : 5,
-            paddingHorizontal : 10
-          }}
-        >
-          <Text>Express:</Text>
-          <Text>N2,000</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            paddingVertical: 15,
-            justifyContent: "space-between",
-            backgroundColor:'#EBEBEB',
             paddingHorizontal : 10,
-            marginVertical : 5
+            borderRadius : 10
+      
           }}
         >
           <Text>Express:</Text>
+          <Text>N2,000</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            paddingVertical: 15,
+            justifyContent: "space-between",
+            backgroundColor:'#F8F7F7',
+            marginVertical : 5,
+            paddingHorizontal : 10,
+            borderRadius : 10
+          }}
+        >
+          <Text>Same Day:</Text>
+          <Text>N2,000</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            paddingVertical: 15,
+            justifyContent: "space-between",
+            backgroundColor:'#F8F7F7',
+            paddingHorizontal : 10,
+            marginVertical : 5,
+            borderRadius : 10
+          }}
+        >
+          <Text>Next Day:</Text>
           <Text>N2,000</Text>
         </TouchableOpacity>
       </View>
       <View style={{marginTop  : 10}}>
         <TouchableOpacity
          onPress={()=>navigation.navigate('Deliverysummary')}
-          style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
+          style={{ height: 50, backgroundColor: "#053582", borderRadius: 20 , marginHorizontal : 20 }}
         >
           <Text
             style={{
               color: "white",
               fontWeight: "bold",
               alignSelf: "center",
-              paddingVertical: 7,
+              paddingVertical: 11,
               fontSize: 17,
+              
             }}
           >
             Continue
@@ -136,11 +155,12 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginRight: 15,
+    marginHorizontal : 12
   },
   image: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   title: {
     marginTop: 5,

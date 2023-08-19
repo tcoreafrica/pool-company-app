@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { FlatList } from "react-native-gesture-handler";
 import { dummydata } from "../../../data/dummydata";
 import { TouchableOpacity, Image } from "react-native";
-
+import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import RiderDetails from "./RiderDetails";
 import { useNavigation } from "@react-navigation/native";
@@ -50,7 +50,11 @@ const Riders = () => {
         <Text style={{ fontWeight: "bold", fontSize: 16, paddingBottom: 3 }}>
           {item.name}
         </Text>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>{item.rating}</Text>
+        <View style={{flexDirection :'row'}}>
+        <Text style={{ fontWeight: "bold", fontSize: 16  , paddingRight : 5}}>{item.rating}</Text>
+        <AntDesign name="star" size={19} color="black" />
+        </View>
+        
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ paddingBottom: 3 }}>{item.nbr_delivries}</Text>

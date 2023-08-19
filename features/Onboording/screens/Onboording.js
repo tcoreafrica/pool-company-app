@@ -18,7 +18,7 @@ const Onboording = ({ navigation }) => {
         renderItem={({ item }) => (
           <View style={{  alignSelf: "center" , width }}>
             <Image
-              source={require('../Assets/ONBORD2.png')}
+              source={item.image}
               style={{
                 height : 400,
                 resizeMode :"contain",

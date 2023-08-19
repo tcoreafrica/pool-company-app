@@ -71,6 +71,7 @@ const AcceptOrderFinale = ({ navigation }) => {
       </View>
       <View style={{ marginVertical: 15 }}>
         <TouchableOpacity
+          onPress={()=>navigation.goBack()}
           style={{ height: 40, backgroundColor: "white", borderRadius: 10 }}
         >
           <Text

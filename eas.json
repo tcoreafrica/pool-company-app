@@ -1,12 +1,12 @@
 {
   "cli": {
-    "version": ">= 3.0.0"
-  },
+    "version": ">= 4.1.2"
+   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal"
-    },
+     },
     "preview": {
       "distribution": "internal"
     },
@@ -14,6 +14,7 @@
       "distribution": "store",
       "channel": "production"
     }
+ 
   },
   "submit": {
     "production": {}
