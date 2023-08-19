@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Image } from "react-native";
 import { Text } from "react-native";
 import { View, TextInput, StyleSheet } from "react-native";
+import FromtoImg from "../../../constants/FromtoImg";
+import MarkerLogo from "../../../constants/MarkerLogo";
 
 const AddressForm = () => {
   const [pickupAddress, setPickupAddress] = useState("");
@@ -9,11 +11,15 @@ const AddressForm = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-        Enter Pickup and Dropoff
-      </Text>
-      <View style={{position :'absolute' , bottom : 30  ,left : 3}}>
-        <Image source={require('../../../assets/fromto.png')}/>
+      <View style={{flexDirection: "row" }}>
+        <MarkerLogo />
+        <Text style={{ fontWeight: "bold", marginBottom: 10  , paddingLeft : 8}}>
+          Enter Pickup and Dropoff
+        </Text>
+      </View>
+
+      <View style={{ position: "absolute", bottom: 40, left: 3 }}>
+        <Image source={require("../../../assets/fromto.png")} />
       </View>
       <TextInput
         style={styles.input}
@@ -33,7 +39,7 @@ const AddressForm = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     paddingTop: 14,
     height: 180,
     backgroundColor: "white",
@@ -45,7 +51,8 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 16,
     backgroundColor: "#EBEBEB",
-    marginLeft : 5
+    marginLeft: 18,
+    
   },
 });
 

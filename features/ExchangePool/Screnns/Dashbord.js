@@ -6,18 +6,21 @@ import CompanyOrderLogo from "../../../constants/CompanyOrderLogo";
 import DrawerLogo from "../../../constants/DrawerLogo";
 import OrderIcon from "../../../constants/OrderIcon";
 import AvatarLogo from "../../../constants/Avatar";
+import CompannyOrder from "../../../constants/CompannyOrder";
+import PushedToPool from "../../../constants/PushedToPool";
 
 const Dashbord = ({ navigation }) => {
   return (
-    <View style={{ marginHorizontal: 20, marginTop: 50 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <DrawerLogo />
+    <View style={{ marginHorizontal: 20, marginTop: 30 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" , alignItems:'center'}}>
+        
+        <TouchableOpacity style={{}}>
+        <AvatarLogo />
         </TouchableOpacity>
 
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>Dashboard</Text>
-        <TouchableOpacity>
-        <AvatarLogo />
+        <Text style={{ fontWeight: "bold", fontSize: 19 }}>Welcom chinedu</Text>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <DrawerLogo />
         </TouchableOpacity>
         
       </View>
@@ -25,16 +28,23 @@ const Dashbord = ({ navigation }) => {
         style={{
           backgroundColor: "#053582",
           marginTop: 20,
-          height: 152,
+          height: 100,
           borderRadius: 25,
+          flexDirection :'row',
+          alignItems :'center',
+          justifyContent:'space-between',
+          paddingHorizontal : 10
+          
         }}
       >
+        <View style={{ marginHorizontal : 20  , flex :0.5}}>
         <Text
           style={{
             alignSelf: "center",
             color: "white",
             marginBottom: 5,
             paddingTop: 5,
+            
           }}
         >
           My Wallet:
@@ -44,19 +54,23 @@ const Dashbord = ({ navigation }) => {
             alignSelf: "center",
             color: "white",
             fontWeight: "bold",
-            fontSize: 20,
+            fontSize: 30,
             marginBottom: 20,
           }}
         >
           N4,330.50
         </Text>
+        </View>
+        
         <TouchableOpacity
           style={{
             height: 57,
             backgroundColor: "white",
             borderRadius: 12,
-            marginHorizontal: 20,
             paddingTop: 15,
+            flex : 0.5
+
+            
           }}
           onPress={() => navigation.navigate("Success")}
         >
@@ -72,42 +86,45 @@ const Dashbord = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{ flexDirection: "row", marginTop: 20 }}>
+      <View style={{ flexDirection: "row", marginTop: 20  }}>
         <View
-          style={{ backgroundColor: "#E8F0FE", height: 150, width: "33.33%" }}
+          style={{ backgroundColor: "#E8F0FE", height: 150, width: "32.33%" , borderRadius : 10 }}
         >
-          <Text style={{ alignSelf: "center" }}>26</Text>
+          <Text style={{ alignSelf: "center" ,color :'#407BFF', fontWeight :'bold' , fontSize : 20}}>26</Text>
+          <Text style={{ alignSelf: "center" ,color :'#407BFF'}}>Deliveries</Text>
           <View style={{ alignSelf: "center", paddingVertical: 10 }}>
             <PoolLogo />
           </View>
 
-          <Text style={{ alignSelf: "center" }}>Deliveries</Text>
-          <Text style={{ alignSelf: "center" }}>Pulled from pool</Text>
+          
+          <Text style={{ alignSelf: "center" ,color :'#407BFF'}}>Pulled from pool</Text>
         </View>
         <View
-          style={{ backgroundColor: "#00CE2D", height: 150, width: "33.33%" }}
+          style={{ backgroundColor: "#D5F8D6", height: 150, width: "32.33%" ,marginHorizontal : 10 , borderRadius : 10}}
         >
-          <Text style={{ alignSelf: "center" }}>26</Text>
+          <Text style={{ alignSelf: "center" , fontWeight :'bold', color :'#00CE2D' , fontSize : 20}}>26</Text>
+          <Text style={{ alignSelf: "center"  , color :'#00CE2D'}}>Deliveries</Text>
           <View style={{ alignSelf: "center", paddingVertical: 10 }}>
-            <PoolLogo />
+            <CompannyOrder />
           </View>
 
-          <Text style={{ alignSelf: "center" }}>Deliveries</Text>
-          <Text style={{ alignSelf: "center" }}>Pulled from pool</Text>
+          
+          <Text style={{ alignSelf: "center", color :'#00CE2D' }}>Pulled from pool</Text>
         </View>
         <View
-          style={{ backgroundColor: "#ED847E", height: 150, width: "33.33%" }}
+          style={{ backgroundColor: "#F5E6E4", height: 150, width: "32%" , borderRadius : 10}}
         >
-          <Text style={{ alignSelf: "center" }}>26</Text>
+          <Text style={{ alignSelf: "center" , fontWeight :'bold' ,color : '#ED847E', fontSize : 20}}>26</Text>
+          <Text style={{ alignSelf: "center" ,color : '#ED847E'}}>Orders</Text>
           <View style={{ alignSelf: "center", paddingVertical: 10 }}>
-            <PoolLogo />
+            <PushedToPool />
           </View>
-          <Text style={{ alignSelf: "center" }}>Orders</Text>
-          <Text style={{ alignSelf: "center" }}>Pushed to pool</Text>
+          
+          <Text style={{ alignSelf: "center",color : '#ED847E' }}>Pushed to pool</Text>
         </View>
       </View>
       <View style={{ flexDirection: "row", marginTop: 20 }}>
-        <View style={{ height: 100, backgroundColor: "#FFB200", width: "50%" }}>
+        <View style={{ height: 100, backgroundColor: "#FFB200", width: "50%" , marginRight : 10 , borderRadius : 10}}>
           <Text
             style={{
               alignSelf: "center",
@@ -120,7 +137,7 @@ const Dashbord = ({ navigation }) => {
           </Text>
           <Text style={{ alignSelf: "center" }}>Earnings</Text>
         </View>
-        <View style={{ height: 100, backgroundColor: "#E8F0FE", width: "50%" }}>
+        <View style={{ height: 100, backgroundColor: "#E8F0FE", width: "50%" , borderRadius : 10}}>
           <Text
             style={{
               alignSelf: "center",
