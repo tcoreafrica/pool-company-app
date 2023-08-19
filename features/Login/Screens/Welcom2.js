@@ -1,9 +1,36 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import React from "react";
 import GoogleLogo from "../Assests/GoogleLogo";
 import ForgotPassword from "../../ForgotPassword/Screnns/ForgotPassword";
+import loginUser from "../../../serveur/login/login";
+import { ADD_USER,DELETE_USER } from "../../redux/actionTypes";
+//  import reducers from "../../features/redux/reducers";
+import { useDispatch, useSelector } from "react-redux"; // Importing the useDispatch hook
 
-const Welcom2 = ({ navigation }) => {
+ const Welcom2 = ({ navigation,route }) => {
+  const user = useSelector((state) => state.user);
+  const { email } = route.params; // Retrieve the data from the route object
+  
+  const dispatch = useDispatch();
+
+  const login = () => {
+
+//  dispatch({ type: DELETE_USER})
+     
+      // loginUser("admin@pool.com", "password").then((res) => {
+      //   // console.log(res);
+      //   dispatch({ type: ADD_USER, payload: res });
+      // });
+ 
+  };
+
   return (
     <View
       style={{
@@ -20,21 +47,19 @@ const Welcom2 = ({ navigation }) => {
       </View>
 
       <View>
-        <TouchableOpacity
+        <TextInput
           style={{
             padding: 12,
             marginBottom: 12,
             backgroundColor: "#EBEBEB",
             borderRadius: 30,
           }}
-        >
-          <Text style={{ fontWeight: "300", fontSize: 12, paddingLeft: 8 }}>
-          +234 903 000 2629
-          </Text>
-        </TouchableOpacity>
+          placeholder="+234 903 000 2629 "
+        />
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("WelcomBack")}
+          onPress={() => navigation.navigate("WelcomBack",{email})}
+          // onPress={login}
           style={{
             padding: 12,
 
@@ -64,7 +89,10 @@ const Welcom2 = ({ navigation }) => {
           Continue with Google
         </Text>
       </View>
-      <TouchableOpacity style={{ marginBottom: 20 }} onPress={()=>navigation.navigate(ForgotPassword)}>
+      <TouchableOpacity
+        style={{ marginBottom: 20 }}
+        onPress={() => navigation.navigate(ForgotPassword)}
+      >
         <Text style={{ alignSelf: "center" }}>Forgot password</Text>
       </TouchableOpacity>
       <View>
@@ -81,7 +109,7 @@ const Welcom2 = ({ navigation }) => {
           borderRadius: 30,
           width: 100,
         }}
-        onPress={()=>navigation.navigate("Welcom1")}
+        onPress={() => navigation.goBack("Welcom1")}
       >
         <Text style={{ padding: 10, alignSelf: "center" }}>Back</Text>
       </TouchableOpacity>

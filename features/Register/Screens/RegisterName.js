@@ -85,6 +85,7 @@ const RegisterName = ({navigation}) => {
           borderRadius: 30,
           width: 100,
         }}
+        onPress={()=>navigation.goBack()}
       >
         <Text style={{ padding: 10, alignSelf: "center" }}>Back</Text>
       </TouchableOpacity>

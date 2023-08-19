@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AddressForm from "../Components/AddressForm";
 import Distance from "../../../constants/Distance";
-import Fromto from "../../../constants/fromto";
+import Fromto from "../../../constants/Fromto";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 const data = [
