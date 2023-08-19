@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput } from "react-native";
+import React, { useState } from "react";
 import GoogleLogo from "../Assests/GoogleLogo";
 import ForgotPassword from "../../ForgotPassword/Screnns/ForgotPassword";
 
 const Welcom1 = ({ navigation }) => {
+  const [email,setEmail]=useState('')
   return (
     <View style={{ paddingHorizontal: 20, backgroundColor: "white", flex: 1 , paddingVertical : 60 }}>
       <View style={{}}>
@@ -13,27 +14,27 @@ const Welcom1 = ({ navigation }) => {
       </View>
       
       <View>
-      <TouchableOpacity
+      <TextInput
+      onChangeText={setEmail}
         style={{
           padding: 12,
           marginBottom : 12,
           backgroundColor: "#EBEBEB",
           borderRadius: 30,
         }}
-      >
-        <Text style={{ fontWeight: "300", fontSize: 12, paddingLeft: 8 }}>
-          Enter email or phone number
-        </Text>
-      </TouchableOpacity>
-
+        placeholder="Enter email or phone number"
+      />
+        
+ 
       <TouchableOpacity
-        onPress={() => navigation.navigate("Welcom2")}
+        onPress={() => navigation.navigate("Welcom2",{email})}
         style={{
           padding: 12,
 
           backgroundColor: "#053582",
           borderRadius: 30,
         }}
+        disabled={email==''}
       >
         <Text
           style={{

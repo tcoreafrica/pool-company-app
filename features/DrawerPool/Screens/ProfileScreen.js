@@ -3,8 +3,18 @@ import React from "react";
 import DrawerLogo from "../../../constants/DrawerLogo";
 import AvatarLogo from "../../../constants/Avatar";
 import { TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
+import { DELETE_USER } from "../../redux/actionTypes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const signout = async () => {
+    await AsyncStorage.removeItem("user")
+    dispatch({ type: DELETE_USER });
+    
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 15 }}>
       <View
@@ -12,7 +22,7 @@ const ProfileScreen = ({ navigation }) => {
           backgroundColor: "white",
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop : 10
+          marginTop: 10,
         }}
       >
         <AvatarLogo />
@@ -26,7 +36,7 @@ const ProfileScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{marginTop : 5}}>
+      <View style={{ marginTop: 5 }}>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
           Touchcore Deliveries
         </Text>
@@ -52,17 +62,49 @@ const ProfileScreen = ({ navigation }) => {
         </Text>
       </View>
       <TouchableOpacity
-        style={{ height: 50, backgroundColor: "green" , marginVertical : 20}}
+        style={{ height: 50, backgroundColor: "green", marginVertical: 20 }}
       >
-        <Text style={{alignSelf :'center' , paddingVertical : 10 , color : 'white' , fontSize : 16 , fontWeight : 'bold'}}>Security</Text>
+        <Text
+          style={{
+            alignSelf: "center",
+            paddingVertical: 10,
+            color: "white",
+            fontSize: 16,
+            fontWeight: "bold",
+          }}
+        >
+          Security
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={{ height: 50, backgroundColor: "red" , marginVertical : 20}}
+        style={{ height: 50, backgroundColor: "red", marginVertical: 20 }}
       >
-        <Text style={{alignSelf :'center' , paddingVertical : 10 , color : 'white' , fontSize : 16 , fontWeight : 'bold'}}>View registration</Text>
+        <Text
+          style={{
+            alignSelf: "center",
+            paddingVertical: 10,
+            color: "white",
+            fontSize: 16,
+            fontWeight: "bold",
+          }}
+        >
+          View registration
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{  backgroundColor :'blue' , height : 40 , borderRadius : 10 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 17, paddingVertical : 7 , alignSelf :'center'  ,color :'white'}}>
+
+      <TouchableOpacity
+        onPress={signout}
+        style={{ backgroundColor: "blue", height: 40, borderRadius: 10 }}
+      >
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 17,
+            paddingVertical: 7,
+            alignSelf: "center",
+            color: "white",
+          }}
+        >
           Sign Out
         </Text>
       </TouchableOpacity>

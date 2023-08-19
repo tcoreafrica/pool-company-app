@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Pool for Dc",
-    "slug": "zayd_app_mobile",
+    "slug": "Pool",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
@@ -27,7 +27,7 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Your message here"
       },
-      "bundleIdentifier": "zayd"
+      "bundleIdentifier": "com.touchcoreglobal.Pool"
     },
     "android": {
       "adaptiveIcon": {
@@ -46,14 +46,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "62b0e4c9-2b43-4535-9ff9-8ec35c7688e1"
+        "projectId": "0b984bb3-3e16-439b-bd28-2a9e5251695b"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/62b0e4c9-2b43-4535-9ff9-8ec35c7688e1"
+      "url": "https://u.expo.dev/0b984bb3-3e16-439b-bd28-2a9e5251695b"
     }
   }
 }
