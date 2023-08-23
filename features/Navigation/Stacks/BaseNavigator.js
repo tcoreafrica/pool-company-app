@@ -350,7 +350,7 @@ export default NavigatorBase = () => {
             <Drawer.Screen
               name="ScheduleStack"
               component={ScheduleStack}
-              options={{ headerShown: true }}
+              options={{ headerShown: false }}
             />
             
             
