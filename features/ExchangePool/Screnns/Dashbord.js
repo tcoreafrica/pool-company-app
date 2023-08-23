@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import PoolLogo from "../../../constants/PoolLogo";
 import CompanyOrderLogo from "../../../constants/CompanyOrderLogo";
 import DrawerLogo from "../../../constants/DrawerLogo";
@@ -8,8 +8,13 @@ import OrderIcon from "../../../constants/OrderIcon";
 import AvatarLogo from "../../../constants/Avatar";
 import CompannyOrder from "../../../constants/CompannyOrder";
 import PushedToPool from "../../../constants/PushedToPool";
-
+import getWallet from "../../../serveur/wallet/wallet";
 const Dashbord = ({ navigation }) => {
+const [wallet,setWallet]=useState(null)
+useEffect(()=>{
+  getWallet().then((res)=>setWallet(res.data))
+},[])
+
   return (
     <View style={{ marginHorizontal: 20, marginTop: 30 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" , alignItems:'center'}}>
@@ -49,6 +54,8 @@ const Dashbord = ({ navigation }) => {
         >
           My Wallet:
         </Text>
+
+       {!wallet&& <ActivityIndicator/>}
         <Text
           style={{
             alignSelf: "center",
@@ -58,7 +65,7 @@ const Dashbord = ({ navigation }) => {
             marginBottom: 20,
           }}
         >
-          N4,330.50
+          N {wallet?.balance}
         </Text>
         </View>
         

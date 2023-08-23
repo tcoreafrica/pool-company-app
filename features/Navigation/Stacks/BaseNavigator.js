@@ -47,15 +47,14 @@ export default NavigatorBase = () => {
   const user = useSelector((state) => state.user);
   const [moveToHome, setMoveToHome] = useState(false);
 
-
   const userFetched = async () => {
     try {
       const key = "user";
 
       const value = await AsyncStorage.getItem(key);
 
- 
       if (value !== null && user.user) {
+        console.log(value);
         return true;
       } else {
         return false;
@@ -73,9 +72,6 @@ export default NavigatorBase = () => {
 
     fetchData();
   }, [user]); // Empty dependency array to run effect only once
-
-
- 
 
   const DrawerScreenOptions = {
     drawerStyle: {
@@ -279,6 +275,12 @@ export default NavigatorBase = () => {
           </TouchableOpacity>
         </View>
         {/* <DrawerItemList {...props} /> */}
+        
+        <DrawerItem
+          label="Home"
+          icon={({ focused, color, size }) => <DashLogo />}
+          onPress={() => props.navigation.navigate("Dashboard")}
+        />
         <DrawerItem
           label="Schedule delivery"
           icon={({ focused, color, size }) => <Scheduellogo />}
@@ -348,14 +350,12 @@ export default NavigatorBase = () => {
             <Drawer.Screen
               name="ScheduleStack"
               component={ScheduleStack}
-              options={{ headerShown: false }}
+              options={{ headerShown: true }}
             />
-            <Drawer.Screen
-              name="OrderStack"
-              component={OrderStack}
-              options={{ headerShown: false }}
-            />
-          </>
+            
+            
+            
+           </>
         ) : (
           <Drawer.Screen
             name="Stack"

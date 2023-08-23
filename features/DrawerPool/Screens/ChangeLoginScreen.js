@@ -3,22 +3,20 @@ import React, { useState } from "react";
 import { TextInput } from "react-native";
 import { Button } from "react-native";
 import { TouchableOpacity } from "react-native";
-
+import changePassword from "../../../serveur/login/changePassword";
 const ChangeLoginScreen = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [message, setMessage] = useState("");
   const handlePasswordChange = () => {
-    if (newPassword === repeatPassword) {
-      // Here you can perform the password change logic
-      console.log("Password changed successfully!");
-    } else {
-      console.log("New passwords do not match.");
-    }
+    changePassword(oldPassword, newPassword).then((res) => {
+      console.log(res), setMessage(res.message);
+    });
   };
   return (
     <View style={styles.container}>
-      <Text style={{paddingVertical : 25}}>Verify Password and login</Text>
+      <Text style={{ paddingVertical: 25 }}>Verify Password and login</Text>
       <TextInput
         secureTextEntry
         placeholder="Old Password"
@@ -40,11 +38,23 @@ const ChangeLoginScreen = () => {
         onChangeText={(text) => setRepeatPassword(text)}
         style={styles.input}
       />
-      
-      <TouchableOpacity 
-      onPress={handlePasswordChange}
-      style={{height : 40 , borderRadius : 5 , backgroundColor :'#053582'}}>
-        <Text style={{alignSelf :'center' , marginTop : 10 , color :'white' , fontWeight :'bold'}}>Change Password</Text>
+
+      <Text style={{ marginVertical: 10 }}>{message}</Text>
+      <TouchableOpacity
+        disabled={newPassword != repeatPassword || newPassword == ""}
+        onPress={handlePasswordChange}
+        style={{ height: 40, borderRadius: 5, backgroundColor: "#053582" }}
+      >
+        <Text
+          style={{
+            alignSelf: "center",
+            marginTop: 10,
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Change Password
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor : 'white'
+    backgroundColor: "white",
   },
   input: {
     marginBottom: 20,
