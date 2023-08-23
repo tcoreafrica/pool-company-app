@@ -1,13 +1,24 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View , Linking} from "react-native";
 import React from "react";
 import SupportIcon from "../../../constants/SupportIcon";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 
+import Communications from 'react-native-communications';
+import { useState } from "react";
+import { phonecall } from 'react-native-phone-call';
+
 const Support = ({ navigation }) => {
+  const phoneNumber = '1234567890'; // Replace with the actual phone number
+
+  const callPhoneNumber = () => {
+    const url = `tel:${phoneNumber}`;
+    Linking.openURL(url)
+      .catch(error => console.error('An error occurred while making the phone call:', error));
+  };
   return (
-    <View style={{ marginHorizontal: 20 }}>
+    <View style={{ paddingHorizontal: 20, flex: 1, backgroundColor: "white" }}>
       <View style={{ alignSelf: "center", marginVertical: 30 }}>
         <SupportIcon />
       </View>
@@ -16,7 +27,10 @@ const Support = ({ navigation }) => {
           We would like to hear from you.
         </Text>
       </View>
-      <TouchableOpacity style={{ marginVertical: 40, flexDirection: "row" }}>
+      <TouchableOpacity
+        onPress={callPhoneNumber}
+        style={{ marginVertical: 40, flexDirection: "row" }}
+      >
         <Ionicons name="call" size={27} color="black" />
         <Text style={{ fontSize: 20, paddingLeft: 10 }}>Contact Us</Text>
       </TouchableOpacity>

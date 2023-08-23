@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginRight: 15,
-    marginHorizontal : 12
+    marginHorizontal : 12,
+    
   },
   image: {
     width: 80,
