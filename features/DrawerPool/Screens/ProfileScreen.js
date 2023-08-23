@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import DrawerLogo from "../../../constants/DrawerLogo";
 import AvatarLogo from "../../../constants/Avatar";
 import { TouchableOpacity } from "react-native";
@@ -8,13 +8,30 @@ import { DELETE_USER } from "../../redux/actionTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = ({ navigation }) => {
+  const [info, setInfo] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      let user = await AsyncStorage.getItem("user");
+      setInfo(JSON.parse(user));
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
+
   const dispatch = useDispatch();
 
   const signout = async () => {
-    await AsyncStorage.removeItem("user")
+    await AsyncStorage.removeItem("user");
     dispatch({ type: DELETE_USER });
-    
   };
+
+  if (info == null) {
+    return <ActivityIndicator />;
+  }
   return (
     <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: 15 }}>
       <View
@@ -26,19 +43,10 @@ const ProfileScreen = ({ navigation }) => {
         }}
       >
         <AvatarLogo />
-        <TouchableOpacity
-          onPress={() => navigation.navigate("ChangeLoginScreen")}
-        >
-          <Text
-            style={{ fontWeight: "bold", fontSize: 16, paddingVertical: 10 }}
-          >
-            Change Login
-          </Text>
-        </TouchableOpacity>
       </View>
       <View style={{ marginTop: 5 }}>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          Touchcore Deliveries
+          {info?.data?.account?.username}
         </Text>
       </View>
       <View style={{ marginVertical: 40 }}>
@@ -48,19 +56,34 @@ const ProfileScreen = ({ navigation }) => {
         </Text>
       </View>
       <View style={{ marginVertical: 20 }}>
-        <Text>Company name</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>08123232323</Text>
-      </View>
-      <View style={{ marginVertical: 20 }}>
-        <Text>Company name</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>08123232323</Text>
-      </View>
-      <View style={{ marginVertical: 20 }}>
-        <Text>Company name</Text>
+        <Text>Phone</Text>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          Touchdel@gmail.com
+          {info?.data?.account?.phone}
         </Text>
       </View>
+      <View style={{ marginVertical: 20 }}>
+        <Text>Address</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+          {info?.data?.account?.detail?.address[0]}
+        </Text>
+      </View>
+      <View style={{ marginVertical: 20 }}>
+        <Text>Email</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+          {info?.data?.account?.email}
+        </Text>
+      </View>
+      <TouchableOpacity
+        style={{ flexDirection: "row", alignItems: "center" }}
+        onPress={() => navigation.navigate("ChangeLoginScreen")}
+      >
+        <AvatarLogo  />
+
+        <Text style={{ fontWeight: "bold", fontSize: 16, paddingVertical: 10,marginHorizontal:5 }}>
+          Change Login
+        </Text>
+      </TouchableOpacity>
+
       <TouchableOpacity
         style={{ height: 50, backgroundColor: "green", marginVertical: 20 }}
       >

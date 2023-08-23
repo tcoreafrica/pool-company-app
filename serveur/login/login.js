@@ -2,9 +2,11 @@
 
 import axios from "axios";
 
-// import {URLBASE} from e
-const loginUser = async (email, password) => {
+import { URLBASE } from "@env";
+const loginUser = async () => {
 
+  const email="hrichi_kabil@yahoo.com"
+  const password= "password"
   try {
     const requestBody = {
       email,
@@ -12,7 +14,7 @@ const loginUser = async (email, password) => {
     };
 
     const response = await axios.post(
-      "https://beta-gateway-bhwkuf2epa-uc.a.run.app/account/API/V1/account/login",
+      URLBASE+"/account/API/V1/account/login",
       requestBody
     );
 

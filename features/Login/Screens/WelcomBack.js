@@ -13,15 +13,10 @@ const WelcomBack = ({ navigation, route }) => {
   const user = useSelector((state) => state.user);
 
   const login = async () => {
-    //  dispatch({ type: DELETE_USER})
-
-    // await AsyncStorage.removeItem("user")
-
     try {
       loginUser("admin@pool.com", "password").then(async (res) => {
         await AsyncStorage.setItem("user", JSON.stringify(res));
         dispatch({ type: ADD_USER, payload: res });
-        console.log(user)
       });
     } catch (err) {
       console.log(err);
