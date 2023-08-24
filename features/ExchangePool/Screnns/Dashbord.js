@@ -12,7 +12,9 @@ import getWallet from "../../../serveur/wallet/wallet";
 const Dashbord = ({ navigation }) => {
 const [wallet,setWallet]=useState(null)
 useEffect(()=>{
-  getWallet().then((res)=>setWallet(res.data))
+  getWallet().then((res)=>
+  
+  setWallet(res.data))
 },[])
 
   return (
