@@ -8,17 +8,20 @@ import { TextInput } from "react-native";
 
 const Deliverysummary = ({ navigation }) => {
   const [packagetype, setPackagetype] = useState("");
+
+  const [dropInfo, setDropInfo] = useState({});
+  const [pickInfo, setPickInfo] = useState({});
   return (
     <View style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}>
-      <View style={{ height : 50 , marginTop : 10 , marginHorizontal : 15}}>
+      <View style={{ height: 50, marginTop: 10, marginHorizontal: 15 }}>
         <TextInput
           style={{
             borderWidth: 1,
             borderColor: "#ccc",
             borderRadius: 8,
-            paddingHorizontal : 10,
+            paddingHorizontal: 10,
             marginBottom: 6,
-            backgroundColor: "#EBEBEB",  
+            backgroundColor: "#EBEBEB",
           }}
           placeholder="Package type"
           value={packagetype}
@@ -28,18 +31,16 @@ const Deliverysummary = ({ navigation }) => {
       <View style={{ backgroundColor: "white", marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text>Pickup</Text>
-          <Text>Pickup</Text>
         </View>
 
-        <PickupForm />
+        <PickupForm update={(name, number) => setPickInfo({ name, number })} />
       </View>
       <View style={{ backgroundColor: "white", marginTop: 30 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text>Dropoff</Text>
-          <Text>Dropoff</Text>
         </View>
 
-        <DropofForm />
+        <DropofForm update={(name, number) => setDropInfo({ name, number })} />
       </View>
       <View style={{ height: 65, marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -57,7 +58,13 @@ const Deliverysummary = ({ navigation }) => {
       </View>
       <View style={{ marginTop: 10 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("PayementMethod")}
+          // onPress={() => console.log(pickInfo)}
+          onPress={() =>
+            navigation.navigate("PayementMethod", {
+              pickInfo,
+              dropInfo,
+            })
+          }
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
           <Text

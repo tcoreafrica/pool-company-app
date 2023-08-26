@@ -3,29 +3,37 @@ import { Image } from "react-native";
 import { Text } from "react-native";
 import { View, TextInput, StyleSheet } from "react-native";
 
-const DropofForm = () => {
-  const [pickupAddress, setPickupAddress] = useState("");
-  const [dropOffAddress, setDropOffAddress] = useState("");
+const DropofForm = ({update}) => {
+  const [dropOfName, setDropOfName] = useState("");
+  const [dropOfPhoneNumber, setDropOfPhoneNumber] = useState("");
 
+  const handleChangeName = (value) => {
+    update(value, dropOfPhoneNumber);
+    setDropOfName(value);
+  };
+  const handleChangeNumber = (value) => {
+    update(dropOfName, value);
+    setDropOfPhoneNumber(value);
+  };
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-      14B Wole Ariyo Street, Lekki Phase 1, Lagos
+        14B Wole Ariyo Street, Lekki Phase 1, Lagos
       </Text>
-      <View style={{position :'absolute' , bottom : 30  ,left : 3}}>
-        <Image source={require('../../../assets/fromto.png')}/>
+      <View style={{ position: "absolute", bottom: 30, left: 3 }}>
+        <Image source={require("../../../assets/fromto.png")} />
       </View>
       <TextInput
         style={styles.input}
-        placeholder="Pickup Address"
-        value={pickupAddress}
-        onChangeText={(text) => setPickupAddress(text)}
+        placeholder="dropOf Name"
+        value={dropOfName}
+        onChangeText={(text) => handleChangeName(text)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Drop-off Address"
-        value={dropOffAddress}
-        onChangeText={(text) => setDropOffAddress(text)}
+        placeholder="Drop-off Phone number"
+        value={dropOfPhoneNumber}
+        onChangeText={(text) => handleChangeNumber(text)}
       />
     </View>
   );
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 16,
     backgroundColor: "#EBEBEB",
-    marginLeft : 5
+    marginLeft: 5,
   },
 });
 
