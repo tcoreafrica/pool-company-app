@@ -5,11 +5,10 @@ import { View, TextInput, StyleSheet } from "react-native";
 import FromtoImg from "../../../constants/FromtoImg";
 import MarkerLogo from "../../../constants/MarkerLogo";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-
+import { GOOGLEKEY } from "@env";
 const AddressForm = () => {
   const [pickupAddress, setPickupAddress] = useState("");
   const [dropOffAddress, setDropOffAddress] = useState("");
-  const GOOGLE_MAPS_APIKEY="AIzaSyCGPY_hsHcarYRmtuyvZCTOyoRWGN7-JGA"
 
   return (
     <View style={styles.container}>
@@ -23,50 +22,46 @@ const AddressForm = () => {
       <View style={{ position: "absolute", bottom: 40, left: 3 }}>
         <Image source={require("../../../assets/fromto.png")} />
       </View>
-      <View style={{ flex: 1, padding: 10, marginHorizontal : 5}}>
-      <FlatList
-        ListHeaderComponent={() => (
-      <GooglePlacesAutocomplete
-            placeholder="Pickup Address"
-
-            onPress={(data, details = null) => {
-              console.log(data , details);
-            }}
-            fetchDetails={true}
-            query={{
-              key: GOOGLE_MAPS_APIKEY,
-              language: 'en',
-            }}
-            styles={inputStyles}
-            onFail={error => console.error(error)}
-            nearbyPlacesAPI="GooglePlacesSearch"
-          debounce={200}
-          />
+      <View style={{ flex: 1, padding: 10, marginHorizontal: 5 }}>
+        <FlatList
+          ListHeaderComponent={() => (
+            <GooglePlacesAutocomplete
+              placeholder="Pickup Address"
+              onPress={(data, details = null) => {
+                setPickupAddress(details.geometry.location);
+              }}
+              fetchDetails={true}
+              query={{
+                key: GOOGLEKEY,
+                language: "en",
+              }}
+              styles={inputStyles}
+              onFail={(error) => console.error(error)}
+              nearbyPlacesAPI="GooglePlacesSearch"
+              debounce={200}
+            />
           )}
-        data={[]} // You can provide data if needed
-        keyExtractor={(item, index) => index.toString()}
-      />
-    
-          
-      
-        
-       <FlatList
-        ListHeaderComponent={() => (
-          <GooglePlacesAutocomplete
-            placeholder="Drop-off Address"
-            onPress={(data, details = null) => {
-              console.log(data);
-            }}
-            query={{
-              key: GOOGLE_MAPS_APIKEY,
-              language: 'en',
-            }}
-            styles={inputStyles}
-          />
-        )}
-        data={[]} // You can provide data if needed
-        keyExtractor={(item, index) => index.toString()}
-      /> 
+          data={[]} // You can provide data if needed
+          keyExtractor={(item, index) => index.toString()}
+        />
+
+        <FlatList
+          ListHeaderComponent={() => (
+            <GooglePlacesAutocomplete
+              placeholder="Drop-off Address"
+              onPress={(data, details = null) => {
+                setDropOffAddress(details.geometry.location);
+              }}
+              query={{
+                key: GOOGLEKEY,
+                language: "en",
+              }}
+              styles={inputStyles}
+            />
+          )}
+          data={[]} // You can provide data if needed
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
       {/* <TextInput
         style={styles.input}
@@ -99,14 +94,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     backgroundColor: "#EBEBEB",
     marginLeft: 18,
-  }
+  },
 });
 const inputStyles = {
   textInputContainer: {
     backgroundColor: "rgba(0,0,0,0)",
     borderTopWidth: 0,
     borderBottomWidth: 0,
-    
   },
   textInput: {
     marginLeft: 0,

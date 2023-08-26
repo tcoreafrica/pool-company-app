@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { URLBASE } from "@env";
+const qs = require("qs"); // Import the qs library
+
 import getTokenFromAsyncStorage from "../helper";
 export const getAllExchangePool = async () => {
   const token = await getTokenFromAsyncStorage();
@@ -63,15 +65,15 @@ export const getAllMyCompanyPool = async () => {
 export const sendPoolOrderRequest = async () => {
   const token = await getTokenFromAsyncStorage();
 
-  const data = {
-    pickUpLocation: [9.85534, 8.923335],
-    destinationLocation: [9.341052, 9.917582],
-    deliveryPlan: "63f4f942da9b7798fb6f2a31",
+  payload = {
+    pickUpLocation: [9.0764785, 7.398574],
+    destinationLocation: [9.1764785, 8.008574],
+    deliveryPlan: "643d750a6c393b189d6215de",
     receiver: {
       name: "Rick Grimes",
       email: "rickgrimes@yopmail.com",
       phone: "069222221112",
-      address: "Alexandria",
+      address: [9.1764785, 8.008574],
     },
     itemName: "Sun Chips",
     quantity: 20,
@@ -82,21 +84,20 @@ export const sendPoolOrderRequest = async () => {
       weight: 5,
     },
   };
-
-  // try {
+  try {
     const response = await axios.post(
-      URLBASE + "/pool/API/V1/pool/createPoolOrderRetail",
-
-      data,
+      `${URLBASE}/pool/API/V1/pool/createPoolOrderRetail`,
+      JSON.stringify(payload),
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       }
     );
-    await console.log("Response:", response);
+    console.log("Response:", response);
     // return response.data;
-  // } catch (error) {
-  //   console.error("Error:", error);
-  // }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };

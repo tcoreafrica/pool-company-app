@@ -3,8 +3,10 @@ import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { sendPoolOrderRequest } from "../../../serveur/pools/pool";
-const PayementMethod = ({ navigation }) => {
+const PayementMethod = ({ navigation, route }) => {
+  const params = route.params;
   const handleCreatePoll = () => {
+    // console.log(params)
     sendPoolOrderRequest().then((res) => console.log(res));
   };
   return (
