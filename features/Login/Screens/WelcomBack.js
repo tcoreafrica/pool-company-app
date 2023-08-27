@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ADD_USER, DELETE_USER } from "../../redux/actionTypes";
@@ -11,12 +18,16 @@ const WelcomBack = ({ navigation, route }) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [message, setMessage] = useState("");
 
   const login = async () => {
     try {
-      loginUser("admin@pool.com", "password").then(async (res) => {
-        await AsyncStorage.setItem("user", JSON.stringify(res));
-        dispatch({ type: ADD_USER, payload: res });
+      loginUser(email, password).then(async (res) => {
+        console.log(res);
+        res.success==false
+          ? setMessage(res.error)
+          : (await AsyncStorage.setItem("user", JSON.stringify(res.data)),
+            dispatch({ type: ADD_USER, payload: res.data }));
       });
     } catch (err) {
       console.log(err);
@@ -39,18 +50,17 @@ const WelcomBack = ({ navigation, route }) => {
       </View>
       <Text style={{ marginBottom: 10 }}>Enter your password to continue</Text>
       <View>
-        <TouchableOpacity
+        <TextInput
           style={{
             padding: 12,
             marginBottom: 12,
             backgroundColor: "#EBEBEB",
             borderRadius: 30,
           }}
-        >
-          <Text style={{ fontWeight: "300", fontSize: 12, paddingLeft: 8 }}>
-            Enter password
-          </Text>
-        </TouchableOpacity>
+          placeholder="Enter password"
+          onChangeText={setPassword}
+        />
+        <Text style={{ marginVertical: 10, color: "red" }}>{message}</Text>
 
         <TouchableOpacity
           onPress={login}
