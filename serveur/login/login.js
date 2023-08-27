@@ -3,10 +3,12 @@
 import axios from "axios";
 
 import { URLBASE } from "@env";
-const loginUser = async () => {
+const loginUser = async (email,password) => {
 
-  const email="hrichi_kabil@yahoo.com"
-  const password= "password"
+  // const email="hrichi_kabil@yahoo.com"
+  // const password= "password"
+
+  console.log(email,password)
   try {
     const requestBody = {
       email,
@@ -19,7 +21,7 @@ const loginUser = async () => {
     );
 
     if (response.status) {
-      return response.data;
+       return response.data;
     } else {
       //  store.dispatch(loginFailure("Authentication failed"));
 
