@@ -32,7 +32,7 @@ const loginUser = async (email,password) => {
       };
     }
   } catch (error) {
-    console.error("Error during authentication:", error);
+    // console.error("Error during authentication:", error);
     // store.dispatch(loginFailure("An error occurred"));
 
     return { success: false, error: "An error occurred" };

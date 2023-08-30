@@ -26,7 +26,7 @@ const getRiderInfo = async (riderID) => {
       };
     }
   } catch (error) {
-    console.error("Error during Fetch:", error);
+    console.error("Error during Fetch rider: ", error);
     return { success: false, error: "An error occurred" };
   }
 };

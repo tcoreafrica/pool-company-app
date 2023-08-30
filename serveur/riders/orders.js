@@ -27,7 +27,7 @@ const getOrdersRider = async () => {
       };
     }
   } catch (error) {
-    console.error("Error during Fetch:", error);
+    console.error("Error during Fetch orders:", error);
     return { success: false, error: "An error occurred" };
   }
 };
