@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import CodeInput from "react-native-code-input";
 
-const CodeInputCmp = () => {
+const CodeInputCmp = ({ updateCode }) => {
   const [code, setCode] = useState("");
+ 
 
   const handleCodeChange = (value) => {
-    setCode(value);
+    updateCode(value)
+    
+    
   };
   return (
     <View style={styles.container}>
@@ -18,9 +21,8 @@ const CodeInputCmp = () => {
         activeColor="blue"
         inactiveColor="gray"
         onFulfill={handleCodeChange}
-        style={{borderWidth : 0.5 , borderColor : 'black', paddingLeft : 25  }}
+        style={{ borderWidth: 0.5, borderColor: "black", paddingLeft: 25 }}
       />
-      
     </View>
   );
 };
@@ -29,10 +31,10 @@ export default CodeInputCmp;
 
 const styles = StyleSheet.create({
   container: {
-    height : 80,
+    height: 80,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom : 20
+    marginBottom: 20,
   },
   input: {
     marginTop: 20,

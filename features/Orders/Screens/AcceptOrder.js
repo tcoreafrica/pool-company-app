@@ -1,8 +1,28 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState } from "react";
 import PhaseLoso from "../../../constants/PhaseLogo";
+import { AcceptOrderRequest } from "../../../serveur/pools/pool";
 
-const AcceptOrder = ({navigation}) => {
+const AcceptOrder = ({ navigation, route }) => {
+  const { _id } = route.params.item;
+  const [loading, setLoading] = useState(false);
+  const [poolId, setPllId] = useState({ poolId: _id });
+
+  const handleSubmit = () => {
+    setLoading(true);
+    AcceptOrderRequest(poolId).then((res) => {
+      console.log(res);
+      setLoading(false);
+    });
+    // navigation.navigate("AcceptOrderTwo")
+  };
   return (
     <View
       style={{
@@ -12,7 +32,7 @@ const AcceptOrder = ({navigation}) => {
         paddingVertical: 20,
       }}
     >
-      <View style={{ alignSelf: "center"  , marginTop : 50 }}>
+      <View style={{ alignSelf: "center", marginTop: 50 }}>
         <Image source={require("../../../assets/questionmark.png")} />
       </View>
       <View>
@@ -51,27 +71,36 @@ const AcceptOrder = ({navigation}) => {
           Customer will pay you N3,000 cash on delivery
         </Text>
       </View>
-      <View style={{marginTop  : 100}}>
+      <View style={{ marginTop: 100 }}>
         <TouchableOpacity
-        onPress={()=>navigation.navigate('AcceptOrderTwo')}
-          style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
+          onPress={handleSubmit}
+          style={{
+            height: 40,
+            backgroundColor: "#053582",
+            borderRadius: 10,
+            justifyContent: "center",
+          }}
         >
-          <Text
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              alignSelf: "center",
-              paddingVertical: 7,
-              fontSize: 17,
-            }}
-          >
-            Accept
-          </Text>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                alignSelf: "center",
+                paddingVertical: 7,
+                fontSize: 17,
+              }}
+            >
+              Accept
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
-      <View style={{marginVertical : 15}}>
+      <View style={{ marginVertical: 15 }}>
         <TouchableOpacity
-        
+          onPress={() => navigation.goBack()}
           style={{ height: 40, backgroundColor: "white", borderRadius: 10 }}
         >
           <Text

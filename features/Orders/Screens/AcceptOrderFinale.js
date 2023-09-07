@@ -2,7 +2,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import PhaseLoso from "../../../constants/PhaseLogo";
 
-const AcceptOrderFinale = ({ navigation }) => {
+const AcceptOrderFinale = ({ navigation,route }) => {
+
+  const {cost}=route.params
+  
   return (
     <View
       style={{
@@ -53,7 +56,7 @@ const AcceptOrderFinale = ({ navigation }) => {
       </View>
       <View style={{ marginTop: 100 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("PayementGateway")}
+          onPress={() => navigation.navigate("PayementGateway",{cost})}
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
           <Text

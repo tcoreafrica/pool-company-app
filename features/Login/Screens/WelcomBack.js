@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -5,13 +6,15 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
+  
 } from "react-native";
-import React, { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ADD_USER, DELETE_USER } from "../../redux/actionTypes";
 // import reducers from "../../features/redux/reducers";
 import { useDispatch, useSelector } from "react-redux"; // Importing the useDispatch hook
-import loginUser from "../../../serveur/login/login";
+
+import { loginUser } from "../../../serveur/login/login";
 
 const WelcomBack = ({ navigation, route }) => {
   const { email } = route.params; // Retrieve the data from the route object
@@ -21,9 +24,10 @@ const WelcomBack = ({ navigation, route }) => {
   const [message, setMessage] = useState("");
 
   const login = async () => {
+    
     try {
       loginUser(email, password).then(async (res) => {
-        console.log(res);
+        // console.log(res);
         res.success==false
           ? setMessage(res.error)
           : (await AsyncStorage.setItem("user", JSON.stringify(res.data)),

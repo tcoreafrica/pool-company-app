@@ -5,9 +5,27 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { changePassword } from "../../../serveur/login/login";
 
-const CreatePassword = ({navigation}) => {
+const CreatePassword = ({ navigation, route }) => {
+  const { OTP } = route.params;
+  console.log(OTP);
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const handleRequestChange = () => {
+    let credentials = {
+      otp: OTP,
+      password: password,
+      retypePassword: password,
+    };
+    changePassword(credentials).then((res) => {
+      console.log(res);
+
+      res.success == false ? null : navigation.navigate("PasswordChanges");
+    });
+  };
   return (
     <View
       style={{
@@ -39,6 +57,7 @@ const CreatePassword = ({navigation}) => {
           placeholder="Enter your password"
           placeholderTextColor="#999"
           secureTextEntry={true}
+          onChangeText={setPassword}
         />
       </View>
       <View style={{ width: "100%" }}>
@@ -53,27 +72,39 @@ const CreatePassword = ({navigation}) => {
       </View>
       <View style={{ width: "100%", paddingTop: 10 }}>
         <TextInput
-          style={styles.textInput2}
+          style={[
+            styles.textInput2,
+            {
+              borderColor:
+                repeatPassword == ""
+                  ? "black"
+                  : repeatPassword != password
+                  ? "red"
+                  : "green",
+            },
+          ]}
           placeholder="Enter your password"
           placeholderTextColor="#999"
           secureTextEntry={true}
+          onChangeText={setRepeatPassword}
         />
       </View>
       <View style={{ width: "100%" }}>
-        <Text style={{ color: "green", fontSize: 14, fontWeight: "500" }}>
-          Matched
+        <Text style={{ color: "red", fontSize: 14, fontWeight: "500" }}>
+          {repeatPassword != password ? "Repeat the same password please" : ""}
         </Text>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("PasswordChanges")}
+        onPress={handleRequestChange}
         style={{
           padding: 12,
-          position : 'absolute',
-          bottom : 10,
-          width : "100%",
+          position: "absolute",
+          bottom: 10,
+          width: "100%",
           backgroundColor: "#053582",
           borderRadius: 30,
         }}
+        disabled={repeatPassword != password}
       >
         <Text
           style={{
@@ -96,7 +127,7 @@ export default CreatePassword;
 const styles = StyleSheet.create({
   textInput: {
     height: 40,
-    borderColor: "red",
+    borderColor: "black",
     borderWidth: 1,
     borderRadius: 4,
     fontSize: 16,

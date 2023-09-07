@@ -10,12 +10,12 @@ const Orders = () => {
   const FirstRoute = () => (
     <View style={{ flex: 1, backgroundColor: "white"  }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" , paddingHorizontal : 15 , paddingVertical : 20}}>
-        <Text style={{}}>You can pick orders from here to your company</Text>
-        <Text>18 June, 20</Text>
+        {/* <Text style={{}}>You can pick orders from here to your company</Text>
+        <Text>18 June, 20</Text> */}
       </View>
       <View style={{ flexDirection: "row",paddingHorizontal : 15, justifyContent: "space-between" , marginTop : 10  }}>
-        <Text>Ikeja</Text>
-        <Text style={{}}>20 in queue</Text>
+        <Text>  </Text>
+        {/* <Text style={{}}>20 in queue</Text> */}
         <TouchableOpacity>
           <Icon name="filter" size={18} style={{}} />
         </TouchableOpacity>
@@ -29,12 +29,12 @@ const Orders = () => {
   const SecondRoute = () => (
     <View style={{ flex: 1, backgroundColor: "white"  }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" , paddingHorizontal : 15 , paddingVertical : 20}}>
-        <Text style={{}}>You can pick orders from here to your company</Text>
-        <Text>18 June, 20</Text>
+        {/* <Text style={{}}>You can pick orders from here to your company</Text>
+        <Text>18 June, 20</Text> */}
       </View>
       <View style={{ flexDirection: "row",paddingHorizontal : 15, justifyContent: "space-between" , marginTop : 10  }}>
         <Text>Ikeja</Text>
-        <Text style={{}}>20 in queue</Text>
+        {/* <Text style={{}}>20 in queue</Text> */}
         <TouchableOpacity>
           <Icon name="filter" size={18} style={{}} />
         </TouchableOpacity>
