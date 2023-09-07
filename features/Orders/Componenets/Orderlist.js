@@ -62,7 +62,7 @@ const Orderlist = ({}) => {
             <Text style={{ paddingLeft: 5, color: "red" }}>Express</Text>
           </View>
           <TouchableOpacity
-            onPress={() => console.log(item)}
+            onPress={() => navigation.navigate('AcceptOrder',{item})}
             style={{
               height: 30,
               borderRadius: 5,

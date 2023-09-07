@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { TextInput } from "react-native";
 import { Button } from "react-native";
 import { TouchableOpacity } from "react-native";
-import changePassword from "../../../serveur/login/changePassword";
+
 const ChangeLoginScreen = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

@@ -8,7 +8,9 @@ import OrderIcon from "../../../constants/OrderIcon";
 import AvatarLogo from "../../../constants/Avatar";
 import CompannyOrder from "../../../constants/CompannyOrder";
 import PushedToPool from "../../../constants/PushedToPool";
-import getWallet from "../../../serveur/wallet/wallet";
+import { getWallet } from "../../../serveur/wallet/wallet";
+
+
 const Dashbord = ({ navigation }) => {
 const [wallet,setWallet]=useState(null)
 useEffect(()=>{

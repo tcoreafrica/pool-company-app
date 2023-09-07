@@ -1,7 +1,30 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { sendOTP } from "../../../serveur/login/login";
 
 const ForgotPassword = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSendOTP = () => {
+    setLoading(true);
+    sendOTP(email).then((res) => {
+      if (res <= 201) {
+        navigation.navigate("VerifyPassword",{email});
+      } else setMessage(res.error);
+      setLoading(false);
+    });
+  };
   return (
     <View
       style={{
@@ -21,39 +44,44 @@ const ForgotPassword = ({ navigation }) => {
       </View>
 
       <View>
-        <TouchableOpacity
+        <TextInput
           style={{
             padding: 12,
             marginBottom: 12,
             backgroundColor: "#EBEBEB",
             borderRadius: 30,
           }}
-        >
-          <Text style={{ fontWeight: "300", fontSize: 12, paddingLeft: 8 }}>
-            Enter your email
-          </Text>
-        </TouchableOpacity>
+          placeholder="  Enter your email"
+          onChangeText={setEmail}
+        />
+
+        <Text style={{ margin: 10, color: "red" }}>{message}</Text>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("VerifyPassword")}
           style={{
             padding: 12,
 
             backgroundColor: "#053582",
             borderRadius: 30,
           }}
+          disabled={email == ""}
+          onPress={handleSendOTP}
         >
-          <Text
-            style={{
-              fontWeight: "300",
-              fontSize: 14,
-              alignSelf: "center",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
-            Reset password
-          </Text>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text
+              style={{
+                fontWeight: "300",
+                fontSize: 14,
+                alignSelf: "center",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
+              Reset password
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -64,7 +92,7 @@ const ForgotPassword = ({ navigation }) => {
           borderRadius: 30,
           width: 100,
         }}
-        onPress={()=>navigation.navigate("Welcom1")}
+        onPress={() => navigation.navigate("Welcom1")}
       >
         <Text style={{ padding: 10, alignSelf: "center" }}>Back</Text>
       </TouchableOpacity>

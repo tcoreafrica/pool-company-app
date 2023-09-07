@@ -101,3 +101,28 @@ export const sendPoolOrderRequest = async () => {
     console.error("Error:", error);
   }
 };
+
+export const AcceptOrderRequest = async (order) => {
+  const token = await getTokenFromAsyncStorage();
+
+  console.log(order)
+
+  try {
+    const response = await axios.post(
+      `${URLBASE}/pool/API/V1/pool/acceptDelivery`,
+      order,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+   return response.status
+    // return response.data;
+  } catch (error) {
+   return("Error:", error);
+  }
+
+
+};

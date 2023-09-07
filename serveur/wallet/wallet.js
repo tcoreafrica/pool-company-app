@@ -3,7 +3,7 @@
 import axios from "axios";
 import getTokenFromAsyncStorage from "../helper";
 import {URLBASE} from '@env'
-const getWallet = async () => {
+export const getWallet = async () => {
   const token= await getTokenFromAsyncStorage()
   try {
     const response = await axios.get(
@@ -30,4 +30,29 @@ const getWallet = async () => {
   }
 };
 
-export default getWallet;
+
+export const rechargeWallet=async(order)=>{
+
+
+  const token = await getTokenFromAsyncStorage();
+
+ 
+  try {
+    const response = await axios.post(
+      `${URLBASE}/payment/API/V1/payment/rechargeWallet`,
+      order,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+   return response.data.data
+    // return response.data;
+  } catch (error) {
+   return("Error:", error);
+  }
+
+
+}

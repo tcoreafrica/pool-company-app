@@ -1,13 +1,26 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { TouchableOpacity } from "react-native";
 import { Modal } from "react-native";
 import { Pressable } from "react-native";
+import { getWallet } from "../../../serveur/wallet/wallet";
 
 const TopUpRequest = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    getWallet().then((res) => {
+      setBalance(res.data.balance);
+
+      if (res.data.balance == 0) {
+        setModalVisible(true);
+      }
+    });
+  }, []);
+
   return (
     <View
       style={{
@@ -70,7 +83,7 @@ const TopUpRequest = ({ navigation }) => {
       </View>
       <View style={{ marginTop: 50 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("TopUpWallet")}
+          onPress={() => navigation.navigate("AcceptOrderFinale",{balance})}
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
           <Text
@@ -124,7 +137,10 @@ const TopUpRequest = ({ navigation }) => {
             </View>
             <View style={{ marginTop: 50 }}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("TopUpWallet")}
+                onPress={() => {
+                  setModalVisible(false),
+                    navigation.navigate("TopUpWallet", { balance });
+                }}
                 style={{
                   height: 40,
                   backgroundColor: "#053582",
@@ -166,7 +182,6 @@ const TopUpRequest = ({ navigation }) => {
                 </Text>
               </TouchableOpacity>
             </View>
-            
           </View>
         </View>
       </Modal>
