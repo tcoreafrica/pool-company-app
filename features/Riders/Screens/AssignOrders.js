@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { dummydata2 } from "../../../data/dummydata2";
 import { TouchableOpacity } from "react-native";
@@ -13,15 +13,21 @@ import { Pressable } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { AntDesign } from "@expo/vector-icons";
 import TimeLogo from "../../../constants/TimeLogo";
+import getAllRiders from "../../../serveur/riders/riders";
 
 const AssignOrders = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTextModal, setSearchTextModal] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalvisible, setmodalvisible] = useState(false);
+  const [riders, setRiders] = useState([]);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  useEffect(() => {
+    getAllRiders().then((res) => setRiders(res.data));
+  }, []);
 
   const handleSearchChange = (text) => {
     setSearchText(text);
@@ -146,6 +152,8 @@ const AssignOrders = () => {
     </>
   );
   const renderItem2 = ({ item }) => (
+    
+    console.log(item._id),
     <View style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={toggleModal}
@@ -165,7 +173,13 @@ const AssignOrders = () => {
       >
         <View style={{}}>
           <Image
-            source={item.img}
+            source={
+              !item?.profilePhoto
+                ? item.profilePhoto
+                : {
+                    uri: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                  }
+            }
             style={{
               height: 40,
               width: 40,
@@ -178,14 +192,15 @@ const AssignOrders = () => {
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text style={{ fontWeight: "bold", fontSize: 16, paddingBottom: 3 }}>
-            {item.name}
+          {item.firstName + " " + item.lastName}
+
           </Text>
           <Text style={{ fontWeight: "bold", fontSize: 16 }}>
             {item.rating}
           </Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ paddingBottom: 3 }}>{item.nbr_delivries}</Text>
+          <Text style={{ paddingBottom: 3 }}>{item.orderCount.length}</Text>
           {/* <TouchableOpacity
         style={{ backgroundColor: "#053582", borderRadius: 8 , height : 21 , width :51}}
       >
@@ -201,7 +216,7 @@ const AssignOrders = () => {
               style={{ marginRight: 10 }}
             />
             <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-              {item.location}
+              {item.address[0]}
             </Text>
           </View>
 
@@ -379,12 +394,26 @@ const AssignOrders = () => {
                 </Text>
               </View>
             </View>
-            <View style={{marginTop : 8}}>
-              <Text style={{alignSelf : 'center' , fontWeight :'bold' , fontSize : 20}}>to order</Text>
+            <View style={{ marginTop: 8 }}>
+              <Text
+                style={{
+                  alignSelf: "center",
+                  fontWeight: "bold",
+                  fontSize: 20,
+                }}
+              >
+                to order
+              </Text>
             </View>
-            <View style={{marginTop : 8 , flexDirection : 'row', justifyContent:'space-between'}}>
-                <Text>Phase 1, Lekki</Text>
-                <Text>Oba Akran, Ikeja</Text>
+            <View
+              style={{
+                marginTop: 8,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text>Phase 1, Lekki</Text>
+              <Text>Oba Akran, Ikeja</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <TouchableOpacity
@@ -474,8 +503,8 @@ const AssignOrders = () => {
       </View>
 
       <FlatList
-        data={dummydata}
-        keyExtractor={(item) => item.id.toString()}
+        data={riders}
+        keyExtractor={(item) => item._id.toString()}
         renderItem={renderItem2}
         style={{}}
       />

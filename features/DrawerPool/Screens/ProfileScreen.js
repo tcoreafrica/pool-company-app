@@ -6,13 +6,29 @@ import { TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { DELETE_USER } from "../../redux/actionTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AddressTextFromCoordinates } from "../../../serveur/helper";
 
 const ProfileScreen = ({ navigation }) => {
   const [info, setInfo] = useState(null);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    !info && fetchData();
+
+    getAddressText();
+  }, [info]);
+
+  const getAddressText = () => {
+    console.log(info);
+    info?.account?.detail?.address &&
+      AddressTextFromCoordinates(
+        info.account.detail.address[0],
+        info.account.detail.address[1]
+      ).then((res) => {
+        setAddress(res);
+      });
+  };
+
   const fetchData = async () => {
     try {
       let user = await AsyncStorage.getItem("user");
@@ -45,41 +61,44 @@ const ProfileScreen = ({ navigation }) => {
         <AvatarLogo />
       </View>
       <View style={{ marginTop: 5 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          {info?.data?.account?.username}
-        </Text>
-      </View>
-      <View style={{ marginVertical: 40 }}>
         <Text>Company name</Text>
+
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          Touchcore Deliveries
+ 
+          {info?.account?.username}
         </Text>
       </View>
+      
       <View style={{ marginVertical: 20 }}>
         <Text>Phone</Text>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          {info?.data?.account?.phone}
+          {info?.account?.phone}
         </Text>
       </View>
       <View style={{ marginVertical: 20 }}>
         <Text>Address</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          {info?.data?.account?.detail?.address[0]}
-        </Text>
+        <Text style={{ fontWeight: "bold", fontSize: 16 }}>{address}</Text>
       </View>
       <View style={{ marginVertical: 20 }}>
         <Text>Email</Text>
         <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-          {info?.data?.account?.email}
+          {info?.account?.email}
         </Text>
       </View>
       <TouchableOpacity
         style={{ flexDirection: "row", alignItems: "center" }}
         onPress={() => navigation.navigate("ChangeLoginScreen")}
       >
-        <AvatarLogo  />
+        <AvatarLogo />
 
-        <Text style={{ fontWeight: "bold", fontSize: 16, paddingVertical: 10,marginHorizontal:5 }}>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 16,
+            paddingVertical: 10,
+            marginHorizontal: 5,
+          }}
+        >
           Change Login
         </Text>
       </TouchableOpacity>

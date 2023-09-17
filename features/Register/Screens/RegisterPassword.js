@@ -82,6 +82,7 @@ const RegisterPassword = ({ navigation, route }) => {
         secureTextEntry
         onChangeText={setRepeatPassword}
         placeholder="confirm Password"
+         
       />
 
       <View

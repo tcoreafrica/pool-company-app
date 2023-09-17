@@ -1,4 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { URLBASE, GOOGLEKEY } from "@env";
+import Geolocation from "react-native-geocoding";
 
 const getTokenFromAsyncStorage = async () => {
   try {
@@ -25,5 +27,18 @@ const getMYIDFromAsyncStorage = async () => {
     return null;
   }
 };
+
+export const  AddressTextFromCoordinates=async(latitude, longitude)=>{
+  Geolocation.init(GOOGLEKEY);
+
+  try {
+    const result = await Geolocation.from(latitude, longitude);
+    const formattedAddress = result.results[0].formatted_address;
+   return(formattedAddress);
+  } catch (error) {
+    console.error("Error:", error);
+    setAddress("...");
+  }
+}
 
 export default  getTokenFromAsyncStorage ;

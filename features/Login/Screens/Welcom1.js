@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import GoogleLogo from "../Assests/GoogleLogo";
@@ -21,8 +22,28 @@ const Welcom1 = ({ navigation }) => {
     fetchUser(email).then((res) => {
       console.log(res);
       if (res <= 201) {
-        navigation.navigate("Welcom2", { email });
-      } else setMessage(res.error);
+        navigation.navigate("WelcomBack", { email });
+      } else {
+        Alert.alert(
+          "Error",
+          res.error,
+          [
+            {
+              text: "Again",
+              style: "cancel", // This style represents a "Cancel" button
+            },
+            {
+              text: "Register now",
+              onPress: () => {
+                // Handle the OK button press if needed
+                navigation.navigate("RegisterName")
+              },
+            },
+          ],
+          { cancelable: false } // This prevents the alert from being dismissed by tapping outside of it
+        );
+         
+      }
       setLoading(false);
     });
   };
@@ -53,7 +74,7 @@ const Welcom1 = ({ navigation }) => {
           placeholder="Enter email or phone number"
         />
 
-        <Text style={{margin:10,color:'red'}}>{message}</Text>
+        <Text style={{ margin: 10, color: "red" }}>{message}</Text>
 
         <TouchableOpacity
           onPress={handleFetch}

@@ -113,7 +113,7 @@ export const verificationOTP = async (OPT) => {
     // console.error("Error during authentication:", error);
     // store.dispatch(loginFailure("An error occurred"));
 
-    return { success: false, error: "Incorrect or expired code",message:error.response.data };
+    return { success: false, error: "Incorrect or expired code",message:error.response };
   }
 };
 

@@ -5,6 +5,7 @@ import getTokenFromAsyncStorage from "../helper";
 import {URLBASE} from '@env'
 export const getWallet = async () => {
   const token= await getTokenFromAsyncStorage()
+  console.log(token)
   try {
     const response = await axios.get(
       `${URLBASE}/payment/API/V1/wallet/getWalletBalance`,
@@ -15,7 +16,7 @@ export const getWallet = async () => {
       }
     );
 
-    if (response.status === 200) {
+    if (response.status <= 201) {
       return response.data;
     } else {
       return {
@@ -26,7 +27,7 @@ export const getWallet = async () => {
     }
   } catch (error) {
     
-    return { success: false, error: "An error occurred" };
+    return { success: false, error: "An error occurred" ,error};
   }
 };
 
