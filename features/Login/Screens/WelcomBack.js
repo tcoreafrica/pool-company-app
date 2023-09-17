@@ -63,6 +63,7 @@ const WelcomBack = ({ navigation, route }) => {
           }}
           placeholder="Enter password"
           onChangeText={setPassword}
+          secureTextEntry
         />
         <Text style={{ marginVertical: 10, color: "red" }}>{message}</Text>
 

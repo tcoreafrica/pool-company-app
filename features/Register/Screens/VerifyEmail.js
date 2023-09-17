@@ -1,21 +1,25 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import CodeInputCmp from "../../ForgotPassword/Components/CodeInput";
-import { sendOTP, verificationOTP } from "../../../serveur/login/login";
+import { loginUser, sendOTP, verificationOTP } from "../../../serveur/login/login";
+import { useDispatch, useSelector } from "react-redux"; // Importing the useDispatch hook
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ADD_USER, DELETE_USER } from "../../redux/actionTypes";
 
 const VerifyEmail = ({ navigation, route }) => {
   const [OTP, setOTP] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [resend, setResend] = useState(false);
-  const { email } = route.params.globalInfo;
-  console.log(route.params.globalInfo.email);
+  const { email,password } = route?.params?.globalInfo;
+  const dispatch = useDispatch();
+ 
 
   const handleSubmit = () => {
      verificationOTP(OTP).then((res) => {
       console.log(res)
 
-      res <= "201" ? navigation.navigate("WelcomPool") : setMessage(res.error);
+      res <= "201" ? navigation.navigate("WelcomPool",route.params.globalInfo) : setMessage(res.error);
     });
   };
 

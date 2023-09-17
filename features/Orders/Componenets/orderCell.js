@@ -1,26 +1,13 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
-import { dummydata2 } from "../../../data/dummydata2";
 import { TouchableOpacity } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { AntDesign } from "@expo/vector-icons";
 import TimeLogo from "../../../constants/TimeLogo";
-import { useNavigation } from "@react-navigation/native";
-import { getAllExchangePool } from "../../../serveur/pools/pool";
-import OrderCell from "./orderCell";
-const Orderlist = ({}) => {
-  const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    // orders.length <= 0 &&
-      getAllExchangePool().then((res) => {
-        setOrders(res.data.data);
-      });
-  }, []);
-
-  const navigation = useNavigation();
-  const renderItem = ({ item }) => (
+const OrderCell = ({ item }) => {
+    
+  return (
     <TouchableOpacity
       style={{
         height: 80,
@@ -60,10 +47,10 @@ const Orderlist = ({}) => {
 
           <View style={{ flexDirection: "row" }}>
             <TimeLogo style={{ marginVertical: 3 }} />
-            <Text style={{ paddingLeft: 5, color: "red" }}>Express</Text>
+            <Text style={{ paddingLeft: 5, color: "red" }}>Express </Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('AcceptOrder',{item})}
+            onPress={() => navigation.navigate("AcceptOrder", { item })}
             style={{
               height: 30,
               borderRadius: 5,
@@ -86,23 +73,6 @@ const Orderlist = ({}) => {
       </View>
     </TouchableOpacity>
   );
-  const _emptyState = () => {
-    <Text>Empty state</Text>;
-  };
-
-  if (orders.length <= 0) {
-    return <ActivityIndicator />;
-  }
-  return (
-    <FlatList
-      data={orders}
-      keyExtractor={(item) => item._id.toString()}
-      renderItem={(item)=>OrderCell(item)}
-      ListEmptyComponent={_emptyState}
-    />
-  );
 };
 
-export default Orderlist;
-
-const styles = StyleSheet.create({});
+export default OrderCell;
