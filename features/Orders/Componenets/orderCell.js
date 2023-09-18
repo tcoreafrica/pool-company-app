@@ -4,21 +4,30 @@ import { TouchableOpacity } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { AntDesign } from "@expo/vector-icons";
 import TimeLogo from "../../../constants/TimeLogo";
+import Collapsible from "react-native-collapsible";
 
 const OrderCell = ({ item }) => {
-    
+  
+ 
+
+
   return (
     <TouchableOpacity
       style={{
         height: 80,
-        width: 400,
+        flex: 1,
         borderRadius: 2,
-        elevation: 1,
-        padding: 5,
-        flexDirection: "row",
+        marginHorizontal: 10,
+        paddingVertical: 10,
+        paddingLeft: 40,
+        elevation: 0.5,
       }}
+      onPress={(item) => renderDescription(item)}
     >
-      <PhaseLoso />
+      <View style={{ position: "absolute", top: 17, left: 15 }}>
+        <PhaseLoso />
+      </View>
+
 
       <View style={{}}>
         <View
