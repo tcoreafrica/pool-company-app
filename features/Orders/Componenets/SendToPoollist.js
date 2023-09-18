@@ -59,7 +59,7 @@ const SendToPoollist = ({}) => {
               height: 30,
               borderRadius: 5,
               backgroundColor: "#053582",
-              marginHorizontal: 60,
+              marginHorizontal: 30,
             }}
           >
             <Text

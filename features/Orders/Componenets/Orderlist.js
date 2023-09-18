@@ -9,8 +9,10 @@ import TimeLogo from "../../../constants/TimeLogo";
 import { useNavigation } from "@react-navigation/native";
 import { getAllExchangePool } from "../../../serveur/pools/pool";
 import OrderCell from "./orderCell";
+import Collapsible from "react-native-collapsible";
 const Orderlist = ({}) => {
   const [orders, setOrders] = useState([]);
+  const [expandedItem, setExpandedItem] = useState(null);
 
   useEffect(() => {
     // orders.length <= 0 &&
@@ -39,6 +41,7 @@ const Orderlist = ({}) => {
             flexDirection: "row",
             justifyContent: "space-between",
             width: "85%",
+            
           }}
         >
           <Text>{item.pickUpLocation[0]}</Text>
@@ -53,12 +56,12 @@ const Orderlist = ({}) => {
             justifyContent: "space-between",
           }}
         >
-          <View style={{ flexDirection: "row", paddingRight: 30 }}>
+          <View style={{ flexDirection: "row", paddingRight: 30  }}>
             <TimeLogo style={{ marginVertical: 3 }} />
             <Text style={{ paddingLeft: 5 }}>{item.date.substr(0, 10)}</Text>
           </View>
 
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row"}}>
             <TimeLogo style={{ marginVertical: 3 }} />
             <Text style={{ paddingLeft: 5, color: "red" }}>Express</Text>
           </View>
@@ -90,10 +93,20 @@ const Orderlist = ({}) => {
     <Text>Empty state</Text>;
   };
 
+  const renderDescription = (item) => (
+    <Collapsible collapsed={expandedItem !== item.id}>
+      <Text>{item.quantity}</Text>
+      <Text>{item.quantity}</Text>
+      <Text>{item.quantity}</Text>
+      {/* Add other static information here */}
+    </Collapsible>
+  );
+
   if (orders.length <= 0) {
     return <ActivityIndicator />;
   }
   return (
+    
     <FlatList
       data={orders}
       keyExtractor={(item) => item._id.toString()}

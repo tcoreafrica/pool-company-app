@@ -40,6 +40,7 @@ import OrderStack from "./OrderStack";
 
 import { Provider, useSelector } from "react-redux"; // Importing the useDispatch hook
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import PoolLogoTab from "../../../constants/poolLogoTab";
 
 export default NavigatorBase = () => {
   const Tab = createBottomTabNavigator();
@@ -94,8 +95,10 @@ export default NavigatorBase = () => {
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
+          
         }}
         tabBar={({ navigation, state, descriptors, insets }) => (
+          
           <BottomNavigation.Bar
             navigationState={state}
             safeAreaInsets={insets}
@@ -134,8 +137,17 @@ export default NavigatorBase = () => {
 
               return label;
             }}
+            style={{
+              backgroundColor:'white',
+              
+            }}
+            
+            
           />
+          
+        
         )}
+        
       >
         <Tab.Screen
           name="Dashbord"
@@ -153,7 +165,7 @@ export default NavigatorBase = () => {
           options={{
             tabBarLabel: "Orders",
             tabBarIcon: ({ color, size }) => {
-              return <OrdersLogo />;
+              return <PoolLogoTab />;
             },
           }}
         />
@@ -163,7 +175,7 @@ export default NavigatorBase = () => {
           options={{
             tabBarLabel: "Riders",
             tabBarIcon: ({ color, size }) => {
-              return <RidersLogo />;
+              return <OrdersLogo/>;
             },
           }}
         />

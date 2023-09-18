@@ -75,7 +75,7 @@ const Dashbord = ({ navigation }) => {
           paddingHorizontal: 10,
         }}
       >
-        <View style={{ marginHorizontal: 20, flex: 0.5 }}>
+        <View style={{ paddingHorizontal: 20 }}>
           <Text
             style={{
               alignSelf: "center",
@@ -214,7 +214,7 @@ const Dashbord = ({ navigation }) => {
         <View
           style={{
             height: 100,
-            backgroundColor: "#FFB200",
+            backgroundColor: "rgba(255, 178, 0, 0.08)",
             width: "50%",
             marginRight: 10,
             borderRadius: 10,
@@ -226,11 +226,13 @@ const Dashbord = ({ navigation }) => {
               padding: 10,
               fontWeight: "bold",
               fontSize: 20,
+              color :'#FFB200',
+              fontWeight :'bold'
             }}
           >
             N26,000
           </Text>
-          <Text style={{ alignSelf: "center" }}>Earnings</Text>
+          <Text style={{ alignSelf: "center" , color :'#FFB200' , fontWeight :'bold' }}>Earnings</Text>
         </View>
         <View
           style={{
@@ -253,9 +255,9 @@ const Dashbord = ({ navigation }) => {
           <Text style={{ alignSelf: "center" }}>Active Riders</Text>
         </View>
       </View>
-      <View style={{ marginTop: 20, flexDirection: "row" }}>
+      <View style={{ marginTop: 20, flexDirection: "row" , paddingHorizontal : 20 }}>
         <OrderIcon />
-        <Text style={{ paddingLeft: 10 }}>
+        <Text style={{ paddingLeft: 10  , paddingHorizontal : 65}}>
           Orders you can’t meet with? Push them to the order pool now
         </Text>
       </View>
