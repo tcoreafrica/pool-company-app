@@ -12,12 +12,13 @@ import Collapsible from "react-native-collapsible";
 import { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import OrderDetails from "./OrderDetails";
 
 const Orderlist = ({ }) => {
   const [orders, setOrders] = useState([]);
   const [expandedItem, setExpandedItem] = useState(null);
   const [expanded, setExpanded] = useState(false);
-
+  
 
 
 
@@ -175,100 +176,7 @@ const Orderlist = ({ }) => {
 
       </TouchableOpacity>
       {expanded && (
-        <View style={{
-
-          flex: 1,
-
-          marginHorizontal: 10,
-          paddingVertical: 10,
-
-          elevation: 0.5,
-        }}>
-          <View
-            style={{ height: 85, justifyContent: 'center', backgroundColor: '#053582', borderTopLeftRadius: 11, borderTopRightRadius: 11 }}
-          >
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10 }}>
-              <Text style={{ color: 'white', fontWeight: '400', fontSize: 14 }}>Order No: 003232</Text>
-              <Text style={{ color: 'white', fontWeight: '400', fontSize: 14 }}>2pm</Text>
-            </View>
-            <View style={{ flexDirection: 'row', paddingVertical: 6, justifyContent: 'space-between', paddingHorizontal: 10 }}>
-              <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>N2,500</Text>
-              <Text style={{ color: 'white', fontWeight: '700', fontSize: 14 }}>Express (1hr)</Text>
-            </View>
-          </View>
-          <View
-            style={{ flexDirection: 'row', paddingHorizontal: 20  ,marginTop : 15 , alignItems:'center' }}
-          >
-            <Text style={{ fontWeight: '700', fontSize: 14, color: '#92929D'   }}>Make this delivery for:</Text>
-            <Text style={{ fontWeight: '700', fontSize: 16 , paddingLeft : 10, textAlign :'center'  }}>N2,500</Text>
-          </View>
-          <View
-            style={{ flexDirection: 'row', paddingHorizontal: 20 , alignItems :'center'}}
-          >
-            <Text style={{ fontWeight: '700', fontSize: 14, color: '#92929D'  }}>Customer is going to pay Cash</Text>
-            <Text style={{ fontWeight: '700', fontSize: 16  , paddingLeft : 5 , textAlign :'center' }}>N3,000</Text>
-          </View>
-          <View style={{ paddingHorizontal: 20, height: 144, justifyContent: 'center', marginTop: 10 }}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image source={require('../Assets/Union.png')} />
-              <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>Pickup</Text>
-            </View>
-            <View style={{ flexDirection: 'row', marginTop: 6 }}>
-              <Image source={require('../Assets/Frame.png')} />
-              <View>
-                <Text style={{ paddingLeft: 8, fontWeight: '700', fontSize: 14 }}>14B Wole Ariyo Street, Lekki Phase 1, Lagos</Text>
-                <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>Ibrahim Umar</Text>
-                <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>08122222222</Text>
-              </View>
-
-            </View>
-
-            <View style={{ flexDirection: 'row', marginTop: 6 }}>
-              <MaterialCommunityIcons name="radiobox-marked" size={24} color="black" />
-              <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>Landmark: Ancilla Hospital</Text>
-            </View>
-
-          </View>
-          <View style={{ paddingHorizontal: 20, marginTop: 10, height: 144, justifyContent: 'center', marginTop: 10 }}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image source={require('../Assets/Marker.png')} />
-              <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>Dropoff</Text>
-            </View>
-            <View style={{ flexDirection: 'row', marginTop: 6 }}>
-              <Image source={require('../Assets/Frame.png')} />
-              <View>
-                <Text style={{ paddingLeft: 8, fontWeight: '700', fontSize: 14 }}>14B Wole Ariyo Street, Lekki Phase 1, Lagos</Text>
-                <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>Donald Ndonna</Text>
-                <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>08080808080</Text>
-              </View>
-
-            </View>
-
-            <View style={{ flexDirection: 'row', marginTop: 6 }}>
-              <MaterialCommunityIcons name="radiobox-marked" size={24} color="black" />
-              <Text style={{ paddingLeft: 8, color: '#92929D', fontWeight: '400' }}>MTN Towerhouse</Text>
-            </View>
-
-          </View>
-          <TouchableOpacity
-
-            style={{ height: 50, justifyContent:'center',backgroundColor: "#053582", borderRadius: 10, marginHorizontal : 20 , marginTop : 15 , marginBottom : 15}}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontWeight: "700",
-                textAlign : 'center',
-                
-                fontSize: 15,
-              }}
-            >
-              Accept Order
-            </Text>
-          </TouchableOpacity>
-
-
-        </View>
+        <OrderDetails />
 
 
       )}
@@ -291,7 +199,7 @@ const Orderlist = ({ }) => {
   return (
     <FlatList
       data={orders}
-      keyExtractor={(item) => item._id.toString()}
+      keyExtractor={(item , index) => item.id}
       renderItem={(item) => OrderCell(item)}
       ListEmptyComponent={_emptyState}
     />
@@ -300,4 +208,33 @@ const Orderlist = ({ }) => {
 
 export default Orderlist;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textOne :{
+     color: 'white', fontWeight: '400', fontSize: 14 
+  },
+  textTwo:{
+    color: 'white', fontWeight: '700', fontSize: 16 
+  },
+  textThree:{
+    color: 'white', fontWeight: '700', fontSize: 14 
+  },
+  textFour:{
+    fontWeight: '700', fontSize: 14, color: '#92929D'
+
+  },
+  textFive:{
+    paddingLeft: 8, color: '#92929D', fontWeight: '400'
+  },
+  ButtonInput:{
+    height: 50, justifyContent:'center',backgroundColor: "#053582", borderRadius: 10, marginHorizontal : 20 , marginTop : 15 , marginBottom : 15
+  },
+  DropOff:{
+    paddingHorizontal: 20, marginTop: 10, height: 144, justifyContent: 'center', marginTop: 10
+  },
+  PickUp:{
+    paddingHorizontal: 20, height: 144, justifyContent: 'center', marginTop: 10
+  },
+  textLocation:{
+    paddingHorizontal: 20, height: 144, justifyContent: 'center', marginTop: 10
+  }
+});
