@@ -57,7 +57,7 @@ const Dashbord = ({ navigation }) => {
         </TouchableOpacity>
 
         <Text style={{ fontWeight: "bold", fontSize: 19 }}>
-          Welcom {info?.account?.detail?.name}
+          Welcome {info?.account?.detail?.name}
         </Text>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <DrawerLogo />

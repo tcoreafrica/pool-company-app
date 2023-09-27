@@ -11,9 +11,11 @@ import ProgressBar from "../Components/ProgressBar";
 import ProgressBarCmp from "../Components/ProgressBar";
 import { Image } from "react-native";
 
-const DeliveryDetails = () => {
-  const origin = { latitude: 37.78825, longitude: -122.4324 };
-  const destination = { latitude: 37.7749, longitude: -122.4194 };
+const DeliveryDetails = ({route}) => {
+  
+  const data=route.params
+  const origin = { latitude: 37.749, longitude: -122.4324 };
+  const destination = { latitude: 39.774, longitude: -122.4194 };
   return (
     <ScrollView
       style={{ paddingHorizontal: 10, flex: 1, backgroundColor: "white" }}

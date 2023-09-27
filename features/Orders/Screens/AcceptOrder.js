@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -9,19 +10,40 @@ import {
 import React, { useState } from "react";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { AcceptOrderRequest } from "../../../serveur/pools/pool";
-
+import { finalizeOrderRequest } from "../../../serveur/pools/pool";
 const AcceptOrder = ({ navigation, route }) => {
-  const { _id } = route.params.item;
+  const { _id, ...data } = route.params.item;
   const [loading, setLoading] = useState(false);
   const [poolId, setPllId] = useState({ poolId: _id });
 
+  const orderInfo = {
+    poolId: _id,
+    insurance: "Standard",
+    deliveryItemPrice: "300",
+    paymentMethod: "643d7515ae69cbab7f41ce11",
+  };
+
   const handleSubmit = () => {
     setLoading(true);
-    AcceptOrderRequest(poolId).then((res) => {
-      console.log(res);
-      setLoading(false);
+    finalizeOrderRequest(orderInfo).then((res) => {
+      if (res == 200 || res == 201) {
+        AcceptOrderRequest({ poolId: _id }).then((res) => {
+          if (res == 200 || res == 201) {
+            setLoading(false);
+            navigation.navigate("AcceptOrderTwo");
+          }else{
+            Alert.alert(res)
+          }
+        });
+      }
     });
     // navigation.navigate("AcceptOrderTwo")
+    // console.log(_id);
+
+    // AcceptOrderRequest(poolId).then((res) => {
+    //   console.log(res);
+
+    // });
   };
   return (
     <View
@@ -68,12 +90,13 @@ const AcceptOrder = ({ navigation, route }) => {
           N500 will be deducted from your wallet balance.
         </Text>
         <Text style={{ color: "#053582", fontWeight: "bold", fontSize: 16 }}>
-          Customer will pay you N3,000 cash on delivery
+          Customer will pay you {data.amount} cash on delivery
         </Text>
       </View>
       <View style={{ marginTop: 100 }}>
         <TouchableOpacity
           onPress={handleSubmit}
+          disabled={loading}
           style={{
             height: 40,
             backgroundColor: "#053582",

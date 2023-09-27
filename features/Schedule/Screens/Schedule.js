@@ -46,7 +46,7 @@ const Schedule = ({navigation}) => {
     </View>
   );
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} horizontal={false}>
       <FlatList
         data={data}
         renderItem={renderItem}

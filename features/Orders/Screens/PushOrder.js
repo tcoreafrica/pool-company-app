@@ -4,7 +4,10 @@ import { Image } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { TouchableOpacity } from "react-native";
 
-const PushOrder = ({navigation}) => {
+const PushOrder = ({navigation,route}) => {
+
+  const data=route.params
+  console.log(data)
   return (
     <View
       style={{
@@ -53,7 +56,7 @@ const PushOrder = ({navigation}) => {
           N500 will be deducted from your wallet balance.
         </Text>
         <Text style={{ color: "red", fontWeight: "bold", fontSize: 16 }}>
-          Customer will pay you N3,000 cash on delivery
+          Customer will pay you {data.amount} cash on delivery
         </Text>
       </View>
       <View style={{ marginTop: 50 }}>
