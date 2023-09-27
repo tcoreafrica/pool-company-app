@@ -4,7 +4,8 @@ import { TouchableOpacity } from 'react-native'
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const OrderDetails = () => {
+const OrderDetails = ({data,location}) => {
+    console.log(data)
     return (
         <View style={{
             flex: 1,
@@ -34,7 +35,7 @@ const OrderDetails = () => {
                 style={{ flexDirection: 'row', paddingHorizontal: 20, alignItems: 'center' }}
             >
                 <Text style={styles.textFour}>Customer is going to pay Cash</Text>
-                <Text style={{ fontWeight: '700', fontSize: 16, paddingLeft: 5, textAlign: 'center' }}>N3,000</Text>
+                <Text style={{ fontWeight: '700', fontSize: 16, paddingLeft: 5, textAlign: 'center' }}>{data?.amount}</Text>
             </View>
             <View style={styles.PickUp}>
                 <View style={{ flexDirection: 'row' }}>
@@ -44,9 +45,9 @@ const OrderDetails = () => {
                 <View style={{ flexDirection: 'row', marginTop: 16 }}>
                     <Image source={require('../Assets/Frame.png')} />
                     <View>
-                        <Text style={styles.textLocation}>14B Wole Ariyo Street, Lekki Phase 1, Lagos</Text>
-                        <Text style={styles.textFive}>Ibrahim Umar</Text>
-                        <Text style={styles.textFive}>08122222222</Text>
+                        <Text style={styles.textLocation}>{location.from}</Text>
+                        <Text style={styles.textFive}>{data.customer.name}</Text>
+                        <Text style={styles.textFive}>{data.customer.phone}</Text>
                     </View>
 
                 </View>
@@ -65,9 +66,9 @@ const OrderDetails = () => {
                 <View style={{ flexDirection: 'row', marginTop: 16 }}>
                     <Image source={require('../Assets/Frame.png')} />
                     <View>
-                        <Text style={styles.textLocation}>14B Wole Ariyo Street, Lekki Phase 1, Lagos</Text>
-                        <Text style={styles.textFive}>Donald Ndonna</Text>
-                        <Text style={styles.textFive}>08080808080</Text>
+                        <Text style={styles.textLocation}>{location.to}</Text>
+                        <Text style={styles.textFive}>{data.receiver.name}</Text>
+                        <Text style={styles.textFive}>{data.receiver.phone}</Text>
                     </View>
 
                 </View>

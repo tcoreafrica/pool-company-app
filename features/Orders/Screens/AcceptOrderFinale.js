@@ -5,6 +5,8 @@ import PhaseLoso from "../../../constants/PhaseLogo";
 const AcceptOrderFinale = ({ navigation,route }) => {
 
   const {cost}=route.params
+
+  
   
   return (
     <View

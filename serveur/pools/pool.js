@@ -24,7 +24,7 @@ export const getAllExchangePool = async () => {
       };
     }
   } catch (error) {
-    console.error("Error during Fetch pool:", error);
+    console.error("Error during Fetch pool getAllExchangePool:", error);
     // store.dispatch(loginFailure("An error occurred"));
 
     return { success: false, error: "An error occurred" };
@@ -55,7 +55,7 @@ export const getAllMyCompanyPool = async () => {
       };
     }
   } catch (error) {
-    console.error("Error during Fetch pool:", error);
+    console.error("Error during Fetch pool getAllMyCompanyPool:", error);
     // store.dispatch(loginFailure("An error occurred"));
 
     return { success: false, error: "An error occurred" };
@@ -105,7 +105,7 @@ export const sendPoolOrderRequest = async () => {
 export const AcceptOrderRequest = async (order) => {
   const token = await getTokenFromAsyncStorage();
 
-  console.log(order)
+  console.log(order);
 
   try {
     const response = await axios.post(
@@ -118,11 +118,30 @@ export const AcceptOrderRequest = async (order) => {
         },
       }
     );
-   return response.status
+    return response.status;
     // return response.data;
   } catch (error) {
-   return("Error:", error);
+    return "Error:", error;
   }
+};
+export const finalizeOrderRequest = async (order) => {
+  const token = await getTokenFromAsyncStorage();
+  console.log(order)
 
-
+  try {
+    const response = await axios.post(
+      `${URLBASE}/pool/API/V1/pool/finalizeOrder`,
+      order,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.status;
+    // return response.data;
+  } catch (error) {
+    return "Error:", error;
+  }
 };
