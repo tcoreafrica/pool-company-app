@@ -21,9 +21,12 @@ const RiderDetails = ({ navigation, route }) => {
   const [riderInfo, setRiderInfo] = useState({});
   const [riderOrders, setRiderOrders] = useState({});
   const RiderID = route.params._id;
+  const address = route?.params?.address;
+  const poolId = route?.params?.poolId;
   const [riderInfoLoading, setRiderInfoLoading] = useState(false);
   const [riderOrderLoading, setRiderOrderLoading] = useState(false);
 
+  
   useEffect(() => {
     getRiderInfo(RiderID).then((res) => {
       setRiderInfo(res), setRiderInfoLoading(true);
@@ -126,7 +129,7 @@ const RiderDetails = ({ navigation, route }) => {
             </View>
 
             <Image
-               source={
+              source={
                 riderInfoLoading?.detail?.profilePhoto != undefined
                   ? item.profilePhoto
                   : {
@@ -184,7 +187,7 @@ const RiderDetails = ({ navigation, route }) => {
             <View>
               <Text style={{ color: "#8F9399" }}>Adress</Text>
               <Text style={{ fontWeight: "bold", fontSize: 14 }}>
-                {riderInfo?.detail?.address[0]}
+                {address}
               </Text>
             </View>
 

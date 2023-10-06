@@ -1,13 +1,18 @@
 // loginUser.js
 
 import axios from "axios";
+import getTokenFromAsyncStorage from "../helper";
+import { getMYIDFromAsyncStorage } from "../helper";
 
-// import {URLBASE} from e
+import {URLBASE} from '@env'
 const getAllRiders = async () => {
-  try {
+  const token= await getTokenFromAsyncStorage()
+  const MYID= await getMYIDFromAsyncStorage()
+
+  
+   try { 
     const response = await axios.get(
-      // &range=1672999790770,1678442990770
-      `https://beta-gateway-bhwkuf2epa-uc.a.run.app/account/API/V1/deliveryCompany/getCompanyRiders/64df88e82f7c4c18327b8596`
+      URLBASE+`/account/API/V1/deliveryCompany/getCompanyRiders/${MYID}`
        
     );
 

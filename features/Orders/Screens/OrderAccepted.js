@@ -2,7 +2,8 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import PhaseLoso from "../../../constants/PhaseLogo";
 
-const OrderAccepted = ({navigation}) => {
+const OrderAccepted = ({ navigation, route }) => {
+  const poolId = route?.params;
   return (
     <View
       style={{
@@ -12,7 +13,7 @@ const OrderAccepted = ({navigation}) => {
         paddingVertical: 20,
       }}
     >
-      <View style={{ alignSelf: "center"  , marginTop : 50 }}>
+      <View style={{ alignSelf: "center", marginTop: 50 }}>
         <Image source={require("../../../assets/acceptedorder.png")} />
       </View>
       <View>
@@ -22,7 +23,6 @@ const OrderAccepted = ({navigation}) => {
             fontWeight: "bold",
             fontSize: 25,
             paddingVertical: 20,
-            
           }}
         >
           Order Accepted!
@@ -44,10 +44,10 @@ const OrderAccepted = ({navigation}) => {
           Express (1hr)
         </Text>
       </View>
-      
-      <View style={{marginTop  : 120}}>
+
+      <View style={{ marginTop: 120 }}>
         <TouchableOpacity
-        onPress={()=>navigation.navigate('OrderAccepted')}
+          onPress={() => navigation.navigate("Riders",poolId)}
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
           <Text
@@ -63,9 +63,9 @@ const OrderAccepted = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{marginVertical : 15}}>
+      <View style={{ marginVertical: 15 }}>
         <TouchableOpacity
-          onPress={()=>navigation.goBack()}
+          onPress={() => navigation.goBack()}
           style={{ height: 40, backgroundColor: "white", borderRadius: 10 }}
         >
           <Text
