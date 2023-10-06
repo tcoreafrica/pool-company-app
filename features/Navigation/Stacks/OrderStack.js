@@ -13,6 +13,8 @@ import PayementGateway from "../../Orders/Screens/PayementGateway";
 import Card from "../../Orders/Screens/Card";
 import TopUpSuccess from "../../Orders/Screens/TopUpSuccess";
 import OrderAcceptedFinale from "../../Orders/Screens/OrderAcceptedFinale";
+import Riders from "../../Riders/Screens/Riders";
+import RiderDetails from "../../Riders/Screens/RiderDetails";
 
 const OrderStack = () => {
   const StackOrder = createNativeStackNavigator();
@@ -30,6 +32,8 @@ const OrderStack = () => {
       <StackOrder.Screen name="Card" component={Card} />
       <StackOrder.Screen name="TopUpSuccess" component={TopUpSuccess} />
       <StackOrder.Screen name="OrderAcceptedFinale" component={OrderAcceptedFinale} />
+      <StackOrder.Screen name='Riders' component={Riders}/>
+      <StackOrder.Screen name='RiderDetails' component={RiderDetails} options={{title :'Rider Details'}}/>
     </StackOrder.Navigator>
   );
 };

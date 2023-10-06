@@ -16,12 +16,12 @@ const getTokenFromAsyncStorage = async () => {
   }
 };
 
-const getMYIDFromAsyncStorage = async () => {
+export const getMYIDFromAsyncStorage = async () => {
   try {
-    const token = await AsyncStorage.getItem("user");
+    const user = await AsyncStorage.getItem("user");
 
-    console.log(token.data)
-    return JSON.parse(token).data.token;
+    
+    return JSON.parse(user).account._id;
   } catch (error) {
     console.error("Error getting token from AsyncStorage:", error);
     return null;

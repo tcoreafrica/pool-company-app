@@ -30,7 +30,7 @@ const AcceptOrder = ({ navigation, route }) => {
         AcceptOrderRequest({ poolId: _id }).then((res) => {
           if (res == 200 || res == 201) {
             setLoading(false);
-            navigation.navigate("AcceptOrderTwo");
+            navigation.navigate("OrderAccepted",_id);
           }else{
             Alert.alert(res)
           }

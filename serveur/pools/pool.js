@@ -145,3 +145,26 @@ export const finalizeOrderRequest = async (order) => {
     return "Error:", error;
   }
 };
+
+export const pushDeliveryToRider=async(data)=>{
+  const token = await getTokenFromAsyncStorage();
+console.log(token)
+
+  try {
+    const response = await axios.post(
+      `${URLBASE}/pool/API/V1/pool/pushDeliveryToRider`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.status;
+    // return response.data;
+  } catch (error) {
+    return "Error:", error;
+  }
+
+}

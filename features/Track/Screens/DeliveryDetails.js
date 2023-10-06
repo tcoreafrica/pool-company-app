@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BlueDelivry from "../../../constants/BlueDelivry";
 import DelivryRider from "../Components/DelivryRider";
 import MessageRider from "../Components/MessageRider";
@@ -10,12 +10,31 @@ import MapViewDirections from "react-native-maps-directions";
 import ProgressBar from "../Components/ProgressBar";
 import ProgressBarCmp from "../Components/ProgressBar";
 import { Image } from "react-native";
+import { AddressTextFromCoordinates } from "../../../serveur/helper";
 
-const DeliveryDetails = ({route}) => {
-  
-  const data=route.params
-  const origin = { latitude: 37.749, longitude: -122.4324 };
-  const destination = { latitude: 39.774, longitude: -122.4194 };
+const DeliveryDetails = ({ route }) => {
+  const data = route.params;
+  const [locationFrom, setLocationFrom] = useState(data.destinationLocation);
+  const [locationTo, setLocationTo] = useState(data.destinationLocation);
+
+  useEffect(() => {
+    AddressTextFromCoordinates(
+      data.pickUpLocation[0],
+      data.pickUpLocation[1]
+    ).then((res) => {
+      setLocationFrom(res);
+    });
+    AddressTextFromCoordinates(
+      data.destinationLocation[0],
+      data.destinationLocation[1]
+    ).then((res) => {
+      setLocationTo(res);
+    });
+  }, []);
+
+  console.log(locationTo)
+   const origin = { latitude: 9.076561, longitude:7.357374};
+  const destination = { latitude: 9.1764428, longitude: 8.0059876 };
   return (
     <ScrollView
       style={{ paddingHorizontal: 10, flex: 1, backgroundColor: "white" }}
@@ -44,7 +63,6 @@ const DeliveryDetails = ({route}) => {
       <View
         style={{
           height: 220,
-          backgroundColor: "red",
           marginVertical: 10,
           borderRadius: 15,
         }}
@@ -80,33 +98,33 @@ const DeliveryDetails = ({route}) => {
         }}
       >
         <View style={{ flex: 0.5, marginHorizontal: 5 }}>
-          <Text style={{ paddingVertical: 5 }}>
-            14B Wole Ariyo Street, Lekki Phase 1,
-          </Text>
-          <Text style={{ color: "#92929D" }}>Lekki</Text>
+          <Text style={{ paddingVertical: 5, height: 70 }}>{locationFrom}</Text>
+          <Text style={{ color: "#92929D" }}>{data.customer.name}</Text>
         </View>
         <View style={{ flex: 0.5, marginHorizontal: 5 }}>
-          <Text style={{ paddingVertical: 5 }}>
-            14B Wole Ariyo Street, Lekki Phase 1,
-          </Text>
-          <Text style={{ color: "#92929D" }}>Lekki</Text>
+          <Text style={{ paddingVertical: 5 }}>{locationTo}</Text>
+          <Text style={{ color: "#92929D" }}>{data.receiver.name}</Text>
         </View>
       </View>
-      <View style={{ backgroundColor: "white", flex : 1 }}>
-        <Image source={require('../../../assets/Rider.png')} style={{alignSelf :'center'}}/>
+      <View style={{ backgroundColor: "white", flex: 1 }}>
+        <Image
+          source={require("../../../assets/Rider.png")}
+          style={{ alignSelf: "center" }}
+        />
       </View>
       <View style={{ height: 70 }}>
         <Text style={{ fontWeight: "bold", fontSize: 18 }}>
-          Delivery Successful!
+          {/* Delivery Successful! */}
         </Text>
-        <Text>Arrived at 10:40pm</Text>
+        {/* <Text>Arrived at 10:40pm</Text> */}
+        <Text>{data.status}</Text>
       </View>
       <View style={{ marginBottom: 15 }}>
         <ProgressBarCmp />
       </View>
       <View style={{}}>
         <DelivryRider />
-        <MessageRider />
+        {/* <MessageRider /> */}
         <RatingRider />
       </View>
     </ScrollView>
