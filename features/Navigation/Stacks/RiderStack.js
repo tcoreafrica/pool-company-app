@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Riders from '../../Riders/Screens/Riders';
 import RiderDetails from '../../Riders/Screens/RiderDetails';
 import AssignOrders from '../../Riders/Screens/AssignOrders';
+import Success from '../../ExchangePool/Screnns/Success';
 
 const RiderStack = () => {
     const StackRider = createNativeStackNavigator();
@@ -12,6 +13,7 @@ const RiderStack = () => {
         <StackRider.Screen name='Riders' component={Riders}/>
         <StackRider.Screen name='RiderDetails' component={RiderDetails} options={{title :'Rider Details'}}/>
         <StackRider.Screen name='AssignOrders' component={AssignOrders} />
+        
     </StackRider.Navigator>
   )
 }

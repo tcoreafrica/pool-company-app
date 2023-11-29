@@ -6,11 +6,12 @@ import Interneterror from "../../ExchangePool/Screnns/Interneterror";
 import Success from "../../ExchangePool/Screnns/Success";
 import RiderDetails from "../../Riders/Screens/RiderDetails";
 import Support from "../../DrawerPool/Screens/Support";
-
+import TopUpWallet from "../../Orders/Screens/TopUpWallet";
+import PayementGateway from "../../Orders/Screens/PayementGateway";
 const StackCmp2 = () => {
   const Stack2 = createNativeStackNavigator();
   return (
-    <Stack2.Navigator >
+    <Stack2.Navigator>
       <Stack2.Screen
         name="Dashbord"
         component={Dashbord}
@@ -21,14 +22,23 @@ const StackCmp2 = () => {
         component={Interneterror}
         options={{ headerShown: false }}
       />
-      <Stack2.Screen
+      <Stack2.Screen 
         name="Success"
         component={Success}
         options={{ headerShown: false }}
       />
-      
-      
-      
+      <Stack2.Screen
+        name="TopUpWallet"
+        component={TopUpWallet}
+        // options={{ headerShown: false }}
+      />
+      <Stack2.Screen
+        name="PayementGateway"
+        component={PayementGateway}
+        // options={{ headerShown: false }}
+      />
+
+       
     </Stack2.Navigator>
   );
 };

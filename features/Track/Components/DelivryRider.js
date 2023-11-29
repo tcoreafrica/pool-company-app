@@ -3,7 +3,7 @@ import React from "react";
 import ProfileLogo from "../../../constants/ProfileLogo";
 import DelivryRiderLogo from "../../../constants/DelivryRiderLogo";
 
-const DelivryRider = () => {
+const DelivryRider = ({rider}) => {
   return (
     <View style={{paddingTop : 10}}>
       <View style={{ flexDirection: "row", justifyContent: "space-between"  , marginHorizontal : 5}}>
@@ -16,8 +16,8 @@ const DelivryRider = () => {
         </View>
         
         <View style={{paddingLeft : 35}}>
-            <Text style={{  fontSize: 18 }}>Simeon Tee</Text>
-            <Text style={{fontWeight :'300'}}>XKYBYD223</Text>
+            <Text style={{  fontSize: 18 }}>{rider.name}</Text>
+            <Text style={{fontWeight :'300'}}>{rider.email}</Text>
         </View>
         <View
           style={{

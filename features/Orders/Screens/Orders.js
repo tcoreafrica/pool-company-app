@@ -8,6 +8,8 @@ import SendToPoollist from "../Componenets/SendToPoollist";
 import { AntDesign } from '@expo/vector-icons'; 
 
 const Orders = () => {
+  const date=Date().substring(0,15);
+  
   const FirstRoute = () => (
     <View style={{ flex: 1, backgroundColor: "white"  }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" , paddingVertical : 20 }}>
@@ -15,7 +17,7 @@ const Orders = () => {
         <Text style={{marginHorizontal  : 5 , color :'#92929D'}}>You can pick orders from here to your company</Text>
         </View>
         
-        <Text style={{flex : 1 , color :'#92929D'}}>18 June, 20</Text>
+        <Text style={{flex : 1 , color :'#92929D'}}>{date}</Text>
       </View>
       <View style={{ flexDirection: "row",paddingHorizontal : 15, justifyContent: "space-between" , marginTop : 10 , marginBottom : 10 }}>
         <View style={{flexDirection :'row'}}>

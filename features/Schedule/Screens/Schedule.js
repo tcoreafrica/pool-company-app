@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AddressForm from "../Components/AddressForm";
 import Distance from "../../../constants/Distance";
-  
+
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import FromtoImg from "../../../constants/FromtoImg";
-
 
 const data = [
   {
@@ -38,7 +37,12 @@ const data = [
   // Add more items as needed
 ];
 
-const Schedule = ({navigation}) => {
+const Schedule = ({ navigation }) => {
+  const [location, setLocation] = useState([]);
+  const handleChangeLocation = (data) => {
+    setLocation(data);
+  };
+
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Image source={{ uri: item.imageUrl }} style={styles.image} />
@@ -46,7 +50,7 @@ const Schedule = ({navigation}) => {
     </View>
   );
   return (
-    <ScrollView style={styles.container} horizontal={false}>
+    <View style={styles.container} horizontal={false}>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -55,14 +59,18 @@ const Schedule = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
       />
       <StatusBar style="auto" />
-      <View style={{  marginTop  : 20 }}>
-        <AddressForm />
+      <View style={{ marginTop: 20 }}>
+        <AddressForm handleChangeLocation={handleChangeLocation} />
       </View>
-      <View style={{ flexDirection: "row" , paddingHorizontal : 15 , marginTop : 20}}>
+      <View
+        style={{ flexDirection: "row", paddingHorizontal: 15, marginTop: 20 }}
+      >
         <FromtoImg />
         <Text style={{ paddingLeft: 8 }}>Estimated distance:</Text>
       </View>
-      <View style={{ flexDirection: "row", marginTop: 15  , paddingHorizontal : 15 }}>
+      <View
+        style={{ flexDirection: "row", marginTop: 15, paddingHorizontal: 15 }}
+      >
         <Distance height={30} />
         <Text
           style={{
@@ -75,24 +83,23 @@ const Schedule = ({navigation}) => {
           50km
         </Text>
       </View>
-      <View style={{paddingHorizontal : 15 , marginTop : 20}}>
-        <Text style={{fontSize : 15 , marginBottom : 5}}>Select Delivery Type:</Text>
+      <View style={{ paddingHorizontal: 15, marginTop: 20 }}>
+        {/* <Text style={{fontSize : 15 , marginBottom : 5}}>Select Delivery Type:</Text> */}
         <TouchableOpacity
           style={{
             flexDirection: "row",
             paddingVertical: 15,
             justifyContent: "space-between",
-            backgroundColor:'#F8F7F7',
-            marginVertical : 5,
-            paddingHorizontal : 10,
-            borderRadius : 10
-      
+            backgroundColor: "#F8F7F7",
+            marginVertical: 5,
+            paddingHorizontal: 10,
+            borderRadius: 10,
           }}
         >
           <Text>Express:</Text>
           <Text>N2,000</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             flexDirection: "row",
             paddingVertical: 15,
@@ -119,12 +126,18 @@ const Schedule = ({navigation}) => {
         >
           <Text>Next Day:</Text>
           <Text>N2,000</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
-      <View style={{marginTop  : 10}}>
+      <View style={{ marginTop: 10 }}>
         <TouchableOpacity
-         onPress={()=>navigation.navigate('Deliverysummary')}
-          style={{ height: 50, backgroundColor: "#053582", borderRadius: 20 , marginHorizontal : 20 }}
+          onPress={() => navigation.navigate("Deliverysummary", location)}
+          style={{
+            height: 50,
+            backgroundColor: "#053582",
+            borderRadius: 20,
+            marginHorizontal: 20,
+          }}
+          disabled={location.length == 0}
         >
           <Text
             style={{
@@ -133,14 +146,13 @@ const Schedule = ({navigation}) => {
               alignSelf: "center",
               paddingVertical: 11,
               fontSize: 17,
-              
             }}
           >
             Continue
           </Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -154,8 +166,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginRight: 15,
-    marginHorizontal : 12,
-    
+    marginHorizontal: 12,
   },
   image: {
     width: 80,

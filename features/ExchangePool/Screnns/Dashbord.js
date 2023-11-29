@@ -19,9 +19,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Dashbord = ({ navigation }) => {
   const [wallet, setWallet] = useState(0);
   const [info, setInfo] = useState(null);
- 
-  
-  
+
   useEffect(() => {
     fetchData();
 
@@ -29,8 +27,6 @@ const Dashbord = ({ navigation }) => {
       console.log(res), setWallet(res.data);
     });
   }, []);
-
-
 
   const fetchData = async () => {
     try {
@@ -108,7 +104,7 @@ const Dashbord = ({ navigation }) => {
             paddingTop: 15,
             flex: 0.5,
           }}
-          onPress={() => navigation.navigate("Success")}
+          onPress={() => navigation.navigate("TopUpWallet", { balance: 0 })}
         >
           <Text
             style={{
@@ -226,13 +222,21 @@ const Dashbord = ({ navigation }) => {
               padding: 10,
               fontWeight: "bold",
               fontSize: 20,
-              color :'#FFB200',
-              fontWeight :'bold'
+              color: "#FFB200",
+              fontWeight: "bold",
             }}
           >
             N26,000
           </Text>
-          <Text style={{ alignSelf: "center" , color :'#FFB200' , fontWeight :'bold' }}>Earnings</Text>
+          <Text
+            style={{
+              alignSelf: "center",
+              color: "#FFB200",
+              fontWeight: "bold",
+            }}
+          >
+            Earnings
+          </Text>
         </View>
         <View
           style={{
@@ -255,9 +259,11 @@ const Dashbord = ({ navigation }) => {
           <Text style={{ alignSelf: "center" }}>Active Riders</Text>
         </View>
       </View>
-      <View style={{ marginTop: 20, flexDirection: "row" , paddingHorizontal : 20 }}>
+      <View
+        style={{ marginTop: 20, flexDirection: "row", paddingHorizontal: 20 }}
+      >
         <OrderIcon />
-        <Text style={{ paddingLeft: 10  , paddingHorizontal : 65}}>
+        <Text style={{ paddingLeft: 10, paddingHorizontal: 65 }}>
           Orders you can’t meet with? Push them to the order pool now
         </Text>
       </View>

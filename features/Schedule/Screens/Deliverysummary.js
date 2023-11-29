@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import AddressForm from "../Components/AddressForm";
 import PickupForm from "../Components/PickupForm";
@@ -6,13 +6,18 @@ import DropofForm from "../Components/DropofForm";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 
-const Deliverysummary = ({ navigation }) => {
+const Deliverysummary = ({ navigation, route }) => {
   const [packagetype, setPackagetype] = useState("");
 
-  const [dropInfo, setDropInfo] = useState({});
-  const [pickInfo, setPickInfo] = useState({});
+  const { dropOffAddress, pickupAddress } = route.params;
+  const [dropInfo, setDropInfo] = useState("");
+  const [pickInfo, setPickInfo] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [quantity, setQuantity] = useState("");
   return (
-    <View style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}>
+    <ScrollView
+      style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}
+    >
       <View style={{ height: 50, marginTop: 10, marginHorizontal: 15 }}>
         <TextInput
           style={{
@@ -21,13 +26,31 @@ const Deliverysummary = ({ navigation }) => {
             borderRadius: 8,
             paddingHorizontal: 10,
             marginBottom: 6,
-            backgroundColor: "#EBEBEB",
+            height: 30,
+            // backgroundColor: "#EBEBEB",
           }}
           placeholder="Package type"
           value={packagetype}
           onChangeText={(text) => setPackagetype(text)}
         />
       </View>
+      <View style={{ backgroundColor: "white", marginTop: 20 }}>
+        <Text>Product</Text>
+        <TextInput
+          style={styles.product}
+          placeholder="Product name"
+          value={itemName}
+          onChangeText={setItemName}
+        />
+        <TextInput
+          keyboardType="decimal-pad"
+          style={styles.product}
+          placeholder="Product quantity"
+          value={quantity}
+          onChangeText={setQuantity}
+        />
+      </View>
+
       <View style={{ backgroundColor: "white", marginTop: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text>Pickup</Text>
@@ -63,7 +86,14 @@ const Deliverysummary = ({ navigation }) => {
             navigation.navigate("PayementMethod", {
               pickInfo,
               dropInfo,
+              dropOffAddress,
+              pickupAddress,
+              itemName,
+              quantity,
             })
+          }
+          disabled={
+            pickInfo == "" || dropInfo == "" || quantity == "" || itemName == ""
           }
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
@@ -80,10 +110,24 @@ const Deliverysummary = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Deliverysummary;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  product: {
+    backgroundColor: "#EBEBEB",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginVertical: 6,
+    height: 40,
+    width: "90%",
+    marginLeft: 20,
+
+    // backgroundColor: "#EBEBEB",
+  },
+});
