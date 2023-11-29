@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, Image, ScrollView } from "react-native";
 import { Text } from "react-native";
 import { View, TextInput, StyleSheet } from "react-native";
@@ -7,10 +7,10 @@ import MarkerLogo from "../../../constants/MarkerLogo";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 import { GOOGLEKEY } from "@env";
-const AddressForm = () => {
+const AddressForm = ({ handleChangeLocation }) => {
   const [pickupAddress, setPickupAddress] = useState("");
   const [dropOffAddress, setDropOffAddress] = useState("");
-  
+ 
 
   return (
     <View style={styles.container}>
@@ -25,39 +25,38 @@ const AddressForm = () => {
         <Image source={require("../../../assets/fromto.png")} />
       </View>
       {/* <View style={{   }}> */}
-        <GooglePlacesAutocomplete
-          placeholder="Pickup Address"
-          onPress={(data, details = null) => {
-            setPickupAddress(details.geometry.location);
-          }}
-          fetchDetails={true}
-          query={{
-            key: GOOGLEKEY,
-            language: "en",
-          }}
-          styles={inputStyles}
-          onFail={(error) => console.error(error)}
-          nearbyPlacesAPI="GooglePlacesSearch"
-           
-        />
-        <GooglePlacesAutocomplete
-          placeholder="Drop-off Address"
-          onPress={(data, details = null) => {
-            setDropOffAddress(details.geometry.location);
-          }}
-          query={{
-            key: GOOGLEKEY,
-            language: "en",
-          }}
-          styles={inputStyles}
-          fetchDetails={true}
-          onFail={(error) => console.error(error)}
-          nearbyPlacesAPI="GooglePlacesSearch"
-          
-           
-        /> 
+      <GooglePlacesAutocomplete
+        placeholder="Pickup Address"
+        onPress={(data, details = null) => {
+          setPickupAddress(details.geometry.location);
+          handleChangeLocation({pickupAddress:details.geometry.location, dropOffAddress:dropOffAddress});
+        }}
+        fetchDetails={true}
+        query={{
+          key: GOOGLEKEY,
+          language: "en",
+        }}
+        styles={inputStyles}
+        onFail={(error) => console.error(error)}
+        nearbyPlacesAPI="GooglePlacesSearch"
+      />
+      <GooglePlacesAutocomplete
+        placeholder="Drop-off Address"
+        onPress={(data, details = null) => {
+          setDropOffAddress(details.geometry.location);
+          handleChangeLocation({pickupAddress:pickupAddress, dropOffAddress:details.geometry.location});
+
+        }}
+        query={{
+          key: GOOGLEKEY,
+          language: "en",
+        }}
+        styles={inputStyles}
+        fetchDetails={true}
+        onFail={(error) => console.error(error)}
+        nearbyPlacesAPI="GooglePlacesSearch"
+      />
       {/* </View> */}
-       
     </View>
   );
 };

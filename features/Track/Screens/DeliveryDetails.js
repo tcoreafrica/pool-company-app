@@ -31,10 +31,19 @@ const DeliveryDetails = ({ route }) => {
       setLocationTo(res);
     });
   }, []);
+  console.log(Object.keys(data.customer));
 
-  console.log(locationTo)
-   const origin = { latitude: 9.076561, longitude:7.357374};
-  const destination = { latitude: 9.1764428, longitude: 8.0059876 };
+  const date = Date(data.date);
+  const dateText = date.substring(0, date.length / 2);
+  const timeText = date.substring(16, date.length - 12);
+  const origin = {
+    latitude: data.pickUpLocation[0],
+    longitude: data.pickUpLocation[1],
+  };
+  const destination = {
+    latitude: data.destinationLocation[0],
+    longitude: data.destinationLocation[1],
+  };
   return (
     <ScrollView
       style={{ paddingHorizontal: 10, flex: 1, backgroundColor: "white" }}
@@ -55,8 +64,8 @@ const DeliveryDetails = ({ route }) => {
         </View>
 
         <View>
-          <Text style={{ fontWeight: "400" }}>18 June, 20</Text>
-          <Text style={{ alignSelf: "center" }}>02:29PM</Text>
+          <Text style={{ fontWeight: "400" }}>{dateText}</Text>
+          <Text style={{ alignSelf: "center" }}>{timeText}</Text>
         </View>
       </View>
 
@@ -123,7 +132,7 @@ const DeliveryDetails = ({ route }) => {
         <ProgressBarCmp />
       </View>
       <View style={{}}>
-        <DelivryRider />
+        <DelivryRider rider={data.customer}/>
         {/* <MessageRider /> */}
         <RatingRider />
       </View>

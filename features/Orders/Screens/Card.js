@@ -14,7 +14,7 @@ const Card = ({navigation}) => {
       </View>
       
       <TouchableOpacity
-      onPress={()=>navigation.navigate('TopUpSuccess')}
+      onPress={() => navigation.navigate("OrderAcceptedFinale")}
       >
         <Image source={require('../../../assets/card.png')} style={{alignSelf :'center'}}/>
       </TouchableOpacity>

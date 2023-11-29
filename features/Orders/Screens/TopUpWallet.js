@@ -46,7 +46,7 @@ const TopUpWallet = ({ navigation,route }) => {
         <View style={{ height: 5, backgroundColor: "#FFB200" }}></View>
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("AcceptOrderFinale",{cost})}
+            onPress={() => navigation.navigate("PayementGateway",{cost})}
             style={{
               borderRadius: 5,
               backgroundColor: "#053582",

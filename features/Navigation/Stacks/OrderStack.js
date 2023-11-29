@@ -15,6 +15,7 @@ import TopUpSuccess from "../../Orders/Screens/TopUpSuccess";
 import OrderAcceptedFinale from "../../Orders/Screens/OrderAcceptedFinale";
 import Riders from "../../Riders/Screens/Riders";
 import RiderDetails from "../../Riders/Screens/RiderDetails";
+import Success from "../../ExchangePool/Screnns/Success";
 
 const OrderStack = () => {
   const StackOrder = createNativeStackNavigator();
@@ -34,6 +35,7 @@ const OrderStack = () => {
       <StackOrder.Screen name="OrderAcceptedFinale" component={OrderAcceptedFinale} />
       <StackOrder.Screen name='Riders' component={Riders}/>
       <StackOrder.Screen name='RiderDetails' component={RiderDetails} options={{title :'Rider Details'}}/>
+      <StackOrder.Screen name='Success' component={Success}/>
     </StackOrder.Navigator>
   );
 };

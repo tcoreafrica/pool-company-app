@@ -5,14 +5,14 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { dummydata2 } from "../../../data/dummydata2";
 import { TouchableOpacity } from "react-native";
 import PhaseLoso from "../../../constants/PhaseLogo";
 import { AntDesign } from "@expo/vector-icons";
 import TimeLogo from "../../../constants/TimeLogo";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getAllExchangePool } from "../../../serveur/pools/pool";
 import Collapsible from "react-native-collapsible";
 import {
@@ -31,32 +31,25 @@ const Orderlist = ({}) => {
   const [expandedItem, setExpandedItem] = useState(null);
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    // orders.length <= 0 &&
-    getAllExchangePool().then((res) => {
-      setOrders(res.data.data);
-    });
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      orders.length<=0&& getAllExchangePool().then((res) => {
+        setOrders(res.data.data);
+      });
+    },[])
+    
+  );
 
-
-  useEffect(() => {
-    AddressTextFromCoordinates('60.233','43.23').then((res) => {
-      console.log(res);
-    });
-  }, []);
-
-
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
   if (orders.length <= 0) {
     return <ActivityIndicator />;
   }
   return (
     <ScrollView>
       {orders.map((item, index) => (
-        <OrderCell key={index} item={item} navigation={navigation}/>
+        <OrderCell key={index} item={item} navigation={navigation} />
       ))}
     </ScrollView>
-    
   );
 };
 

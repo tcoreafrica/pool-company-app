@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -7,9 +7,10 @@ import { AddressTextFromCoordinates } from "../../../serveur/helper";
 import { pushDeliveryToRider } from "../../../serveur/pools/pool";
 export const Rider = ({ rider, navigation, poolId }) => {
   const [address, setAddress] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const goToDetails = (_id) => {
-    navigation.navigate("RiderDetails", { _id, poolId, address });
+    poolId ? null : navigation.navigate("RiderDetails", { _id, address });
   };
 
   useEffect(() => {
@@ -21,11 +22,17 @@ export const Rider = ({ rider, navigation, poolId }) => {
   }, []);
 
   const handleAssignRider = (id) => {
-    console.log(poolId)
+    setLoading(true);
     pushDeliveryToRider({
       poolId: poolId,
       riderId: id,
-    }).then((res) => {console.log(res)});
+    }).then((res) => {
+      setLoading(false);
+      console.log(res)
+      if (res <= 201) {
+        navigation.navigate("Success");
+      }
+    });
   };
 
   return (
@@ -50,7 +57,7 @@ export const Rider = ({ rider, navigation, poolId }) => {
       <View style={{}}>
         <Image
           source={
-            !rider?.profilePhoto
+            rider?.profilePhoto
               ? rider.profilePhoto
               : {
                   uri: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
@@ -105,18 +112,22 @@ style={{ backgroundColor: "#053582", borderRadius: 8 , height : 21 , width :51}}
             height: 25,
             width: 60,
           }}
-          onPress={() => handleAssignRider(rider._id)}
+          onPress={() => poolId&&handleAssignRider(rider.account)}
         >
-          <Text
-            style={{
-              alignSelf: "center",
-              color: "white",
-              fontWeight: "700",
-              padding: 2,
-            }}
-          >
-            Assign
-          </Text>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text
+              style={{
+                alignSelf: "center",
+                color: "white",
+                fontWeight: "700",
+                padding: 2,
+              }}
+            >
+              Assign
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
     </TouchableOpacity>

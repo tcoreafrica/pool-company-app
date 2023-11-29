@@ -41,6 +41,7 @@ import OrderStack from "./OrderStack";
 import { Provider, useSelector } from "react-redux"; // Importing the useDispatch hook
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import PoolLogoTab from "../../../constants/poolLogoTab";
+import StackCmp2 from "./Stack2";
 
 export default NavigatorBase = () => {
   const Tab = createBottomTabNavigator();
@@ -151,7 +152,7 @@ export default NavigatorBase = () => {
       >
         <Tab.Screen
           name="Dashbord"
-          component={Dashbord}
+          component={StackCmp2}
           options={{
             tabBarLabel: "Dash",
             tabBarIcon: ({ color, size }) => {

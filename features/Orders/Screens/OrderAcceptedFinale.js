@@ -59,7 +59,7 @@ const OrderAcceptedFinale = ({ navigation }) => {
 
       <View style={{ marginTop: 80 }}>
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('Orders')}
           style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
         >
           <Text

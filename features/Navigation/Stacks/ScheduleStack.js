@@ -8,6 +8,10 @@ import FinaleScreen from '../../Schedule/Screens/FinaleScreen';
 import { Ionicons } from '@expo/vector-icons';
 
 
+import Riders from "../../Riders/Screens/Riders";
+
+import Success from "../../ExchangePool/Screnns/Success";
+
 
 const ScheduleStack = () => {
     const StackSchedule = createNativeStackNavigator();
@@ -37,6 +41,8 @@ const ScheduleStack = () => {
         <StackSchedule.Screen name='Deliverysummary' component={Deliverysummary}/>
         <StackSchedule.Screen name='PayementMethod' component={PayementMethod}/>   
         <StackSchedule.Screen name='FinaleScreen' component={FinaleScreen}/>  
+        <StackSchedule.Screen name='Riders' component={Riders}/>
+        <StackSchedule.Screen name='Success' component={Success}/>
     </StackSchedule.Navigator>
   )
 }

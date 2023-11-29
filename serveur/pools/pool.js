@@ -62,21 +62,30 @@ export const getAllMyCompanyPool = async () => {
   }
 };
 
-export const sendPoolOrderRequest = async () => {
+export const sendPoolOrderRequest = async (data) => {
   const token = await getTokenFromAsyncStorage();
 
+  const {
+    dropInfo,
+    dropOffAddress,
+    itemName,
+    quantity,
+    pickInfo,
+    pickupAddress,
+  } = data;
+
   payload = {
-    pickUpLocation: [9.0764785, 7.398574],
-    destinationLocation: [9.1764785, 8.008574],
+    pickUpLocation: [pickupAddress.lat, pickupAddress.lng],
+    destinationLocation: [dropOffAddress.lat, dropOffAddress.lng],
     deliveryPlan: "643d750a6c393b189d6215de",
     receiver: {
-      name: "Rick Grimes",
+      name: dropInfo.name,
       email: "rickgrimes@yopmail.com",
-      phone: "069222221112",
-      address: [9.1764785, 8.008574],
+      phone: dropInfo.number,
+      address: [dropOffAddress.lat, dropOffAddress.lng],
     },
-    itemName: "Sun Chips",
-    quantity: 20,
+    itemName: itemName,
+    quantity: quantity,
     sizeOfItem: {
       length: 20,
       width: 30,
@@ -84,6 +93,7 @@ export const sendPoolOrderRequest = async () => {
       weight: 5,
     },
   };
+
   try {
     const response = await axios.post(
       `${URLBASE}/pool/API/V1/pool/createPoolOrderRetail`,
@@ -95,7 +105,9 @@ export const sendPoolOrderRequest = async () => {
         },
       }
     );
-    console.log("Response:", response);
+
+    return response.status <= 200 ? response.data : null;
+
     // return response.data;
   } catch (error) {
     console.error("Error:", error);
@@ -126,7 +138,7 @@ export const AcceptOrderRequest = async (order) => {
 };
 export const finalizeOrderRequest = async (order) => {
   const token = await getTokenFromAsyncStorage();
-  console.log(order)
+  console.log(order);
 
   try {
     const response = await axios.post(
@@ -146,13 +158,13 @@ export const finalizeOrderRequest = async (order) => {
   }
 };
 
-export const pushDeliveryToRider=async(data)=>{
+export const pushDeliveryToRider = async (data) => {
   const token = await getTokenFromAsyncStorage();
-console.log(token)
+  console.log(token);
 
   try {
     const response = await axios.post(
-      `${URLBASE}/pool/API/V1/pool/pushDeliveryToRider`,
+      `${URLBASE}/pool/API/V1/pool/AssignToRider`,
       data,
       {
         headers: {
@@ -166,5 +178,4 @@ console.log(token)
   } catch (error) {
     return "Error:", error;
   }
-
-}
+};

@@ -1,13 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { sendPoolOrderRequest } from "../../../serveur/pools/pool";
+import { Ionicons } from "@expo/vector-icons";
+
 const PayementMethod = ({ navigation, route }) => {
   const params = route.params;
+  const [loading, setLoading] = useState(false);
+
   const handleCreatePoll = () => {
-    // console.log(params)
-    sendPoolOrderRequest().then((res) => console.log(res));
+    setLoading(true);
+    sendPoolOrderRequest(params).then((res) => {
+      setLoading(false);
+
+      navigation.navigate("FinaleScreen", res);
+    });
   };
   return (
     <View style={{ flex: 1, paddingHorizontal: 20, backgroundColor: "white" }}>
@@ -48,11 +56,31 @@ const PayementMethod = ({ navigation, route }) => {
           </View>
           <View style={{ paddingLeft: 10 }}>
             <Text>Saved Cards</Text>
-            <Text>2505 xxxx xxxx 2313</Text>
+            <Text>________________</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{ alignSelf: "center" }}>
-          <Text style={{ fontWeight: "bold", fontSize: 17 }}>Add Card</Text>
+        <TouchableOpacity
+          style={{
+            alignSelf: "center",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Ionicons
+            name="ios-add-circle-outline"
+            size={22}
+            color={"rgba(0,0,0,0.3)"}
+          />
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 17,
+              color: "rgba(0,0,0,0.3)",
+              marginLeft: 5,
+            }}
+          >
+            Add Card
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -77,9 +105,10 @@ const PayementMethod = ({ navigation, route }) => {
               style={{ alignSelf: "center", marginTop: 10 }}
             />
           </View>
-          <View style={{ paddingLeft: 10 }}>
-            <Text>Saved Cards</Text>
-            <Text>2505 xxxx xxxx 2313</Text>
+          <View
+            style={{ paddingLeft: 10, height: 40, justifyContent: "center" }}
+          >
+            <Text>Pay on pickup</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -106,9 +135,10 @@ const PayementMethod = ({ navigation, route }) => {
               style={{ alignSelf: "center", marginTop: 10 }}
             />
           </View>
-          <View style={{ paddingLeft: 10 }}>
-            <Text>Saved Cards</Text>
-            <Text>2505 xxxx xxxx 2313</Text>
+          <View
+            style={{ paddingLeft: 10, height: 40, justifyContent: "center" }}
+          >
+            <Text>Pay on deopoff</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -128,6 +158,7 @@ const PayementMethod = ({ navigation, route }) => {
               width: 40,
               backgroundColor: "#053582",
               borderRadius: 10,
+              alignItems: "center",
             }}
           >
             <Image
@@ -135,9 +166,10 @@ const PayementMethod = ({ navigation, route }) => {
               style={{ alignSelf: "center", marginTop: 10 }}
             />
           </View>
-          <View style={{ paddingLeft: 10 }}>
-            <Text>Saved Cards</Text>
-            <Text>2505 xxxx xxxx 2313</Text>
+          <View
+            style={{ paddingLeft: 10, height: 40, justifyContent: "center" }}
+          >
+            <Text>Pay from wallet</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -161,19 +193,29 @@ const PayementMethod = ({ navigation, route }) => {
       <View style={{ marginTop: 10 }}>
         <TouchableOpacity
           onPress={handleCreatePoll}
-          style={{ height: 40, backgroundColor: "#053582", borderRadius: 10 }}
+          style={{
+            height: 40,
+            backgroundColor: "#053582",
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <Text
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              alignSelf: "center",
-              paddingVertical: 7,
-              fontSize: 17,
-            }}
-          >
-            Complete Request
-          </Text>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                alignSelf: "center",
+                paddingVertical: 7,
+                fontSize: 17,
+              }}
+            >
+              Complete Request
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>
